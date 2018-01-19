@@ -3,9 +3,31 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/index.css">
+    <script src="/javascripts/submitUrlHandler.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  <header>
+    <div class="pageTitle">
+      <h1><%= title %></h1>
+    </div>
+  </header>
+  <div class="rankRoom">
+    <a href="#">hello</a>
+  </div>
+
+  <div class="tagUrl">
+    <form class="tagUrl" name="frm_tagUrl">
+      <input type="text" id="tagUrl" class="input_tagUrl" value="입장할 태그를 입력하세요">
+      <input type="button" class="btn_url" value="이동" onclick="getChatRoom()">                                    // TODO: 이거 위로 올려야함
+    </form>
+  </div>
+  <script language="javascript">
+    function getChatRoom(){
+        var url = $('#tagUrl').val();
+        submitUrlHandler("frm_tagUrl", "get", "chatrooms/"+url);
+    }
+  </script>
   </body>
 </html>

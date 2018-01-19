@@ -1,0 +1,42 @@
+body{
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 10px
+}
+
+h1{
+    margin: 20px;
+}
+
+.tagUrl{
+    line-height: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto auto;
+    width: 65%;
+}
+
+.pageTitle{
+    text-align: center;
+    margin: 40px;
+    font-size: 2rem;
+    border: 2px black;
+}
+.rankRoom{
+    border: 2px solid black;
+    text-align: center;
+    line-height: 100px;
+    margin: 15px auto;
+    height: 400px;
+    width: 65%
+}
+.input_tagUrl{
+  border: 1px solid grey;
+  height: 1.8rem;
+  margin: 0.5rem 0.5rem;
+  display: inline-block;
+}
+.btn_url{
+  border-radius: 5px;
+  display: inline-block;
+}
