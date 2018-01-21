@@ -1,0 +1,71 @@
+
+
+.container{
+    height: 80%;
+    width: auto;
+    border: 2px black solid;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.postContainer{
+    width: 70%;
+    height: 100%;
+    border: 1px black solid;
+    float:left;
+    margin-right: 0.5rem;
+}
+.chatContainer{
+    width: 28%;
+    height: 100%;
+    border: 1px black solid;
+    float:left;
+    position: relative;
+}
+.chatView{
+    border: 1px black solid;
+    height: 40rem;
+    margin: 1px;
+    padding: 0.5rem;
+}
+.chatForm{
+    width: 100%;
+
+    position: absolute;
+    clear: left;
+    left: 1px;
+    bottom: 0px;
+}
+#chatTextBox{
+    width: 70%;
+}
+#chatSubmit{
+    width: 26%;
+}
+.chatMessage_Container{
+    background-color: darkgrey;
+    line-height: 20px;
+    margin: 0.2rem;
+}
+
+.chatMessage_divImage{
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    overflow: hidden;
+}
+.chatMessage_Image{
+    height: 20px;
+    width: 20px;
+    display: block;
+    vertical-align: middle;
+}
+.chatMessage_uid{
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+}
+.chatMessage_message{
+    display: inline-block;
+    vertical-align: middle;
+}

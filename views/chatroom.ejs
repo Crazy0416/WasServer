@@ -1,15 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
+    <title><%= tagTitle %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/basic.css" />
+    <link rel="stylesheet" href="/stylesheets/chatroom.css" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
 </head>
 <body>
 <header>
     <div class="pageTitle">
-        <h1><%= title %></h1>
+        <h1><%= tagTitle %></h1>
     </div>
 </header>
+<div class="container">
+    <div class="postContainer">
+        a
+    </div>
+    <div class="chatContainer">
+        <div class="chatView">
+            <div class="chatMessage_Container">
+                <div class="chatMessage_divImage">
+                    <img class="chatMessage_Image" src="/images/ChatMessage/publicUser2.png" alt="">
+                </div>
+                <div class="chatMessage_uid">
+                    홍길동
+                </div>
+                <div class="chatMessage_message">
+                    와 개 쩔었다.
+                </div>
+            </div>
+            <div class="chatMessage_Container">
+                <div class="chatMessage_divImage">
+                    <img class="chatMessage_Image" src="/images/ChatMessage/publicUser2.png" alt="">
+                </div>
+                <div class="chatMessage_uid">
+                    왕감자
+                </div>
+                <div class="chatMessage_message">
+                    채팅 창 같다.
+                </div>
+            </div>
+            <div class="chatMessage_Container">
+                <div class="chatMessage_divImage">
+                    <img class="chatMessage_Image" src="/images/ChatMessage/publicUser2.png" alt="">
+                </div>
+                <div class="chatMessage_uid">
+                    왓더헥
+                </div>
+                <div class="chatMessage_message">
+                    미쳤따리 미쳤따리 미쳤따리 미쳤따리 미쳤따리
+                    미쳤따리 미쳤따리 미쳤따리
+                </div>
+            </div>
+        </div>
+        <div class="chatForm">
+            <form id="chatForm">
+                <input type="text" id="chatTextBox">
+                <input type="submit" id="chatSubmit" value="채팅">
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

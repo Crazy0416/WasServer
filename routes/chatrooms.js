@@ -12,7 +12,7 @@ router.use(function(req, res, next){
  */
 router.get('/:tag', function(req, res, next){
     var tag = req.params.tag;
-    res.renderData['title'] = "TagTalk";
+    res.renderData['tagTitle'] = tag+"방";
 
     res.render('chatroom', res.renderData);
 })
