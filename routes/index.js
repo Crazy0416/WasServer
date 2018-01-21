@@ -12,4 +12,9 @@ router.get('/', function(req, res, next) {
   res.render('index', res.renderData);
 });
 
+router.get('/taglist', function(req, res, next){
+
+});
+
+
 module.exports = router;
