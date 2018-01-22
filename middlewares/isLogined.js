@@ -3,23 +3,21 @@ var redisClient = redis.createClient(6379, "127.0.0.1");        // url 설정해
 
 module.exports = function(req, res, next) {
 
-    redisClient.get(req.cookies['token'], function(err, data){
+    console.log(JSON.stringify(req.session));
+    if(req.session !== undefined){       // 토큰 있음
 
-        if(data == null){       // 토큰 없음
+        if(req.session.uid){
 
+            console.log(JSON.stringify(req.session.uid));
+            res.renderData['uid'] = req.session.uid;
             next();
 
-        } else {
-
-            res.render('error', {
-                message: "이미 로그인되어 있습니다.",
-                error: {
-                    status: 201,
-                    stack: ""
-                }
-            })
-
+        }else {
+            next();
         }
-    });
+
+    } else {
+        next();
+    }
 
 };

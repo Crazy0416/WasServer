@@ -2,12 +2,46 @@
 <html>
 <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/basic.css" />
+    <link rel="stylesheet" href="/stylesheets/tagList.css" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
 </head>
 <body>
-<%- include('header')%>
+    <%- include('header')%>
+    <div class="container">
+        <div class="realtimePopulateTagBox">
+            <p class="realtimePopulateTag">
+                <div class="tagTitle">
+                    <h2>실시간 인기 태그</h2>
+                </div>
+                <div class="tagListBox">
+                    <ol class="tagList">
+                        <li class="tagRank">안녕하세요</li>
+                        <li class="tagRank">안녕하세요</li>
+                        <li class="tagRank">안녕하세요</li>
+                        <li class="tagRank">안녕하세요</li>
+                        <li class="tagRank">안녕하세요</li>
+                    </ol>
+                </div>
+            </p>
+        </div>
+        <div class="realtimePopulateTagBox">
+            <p class="realtimePopulateTag">
+            <div class="tagTitle">
+                <h2>실시간 인기 태그</h2>
+            </div>
+            <div class="tagListBox">
+                <ol class="tagList">
+                    <li class="tagRank">안녕하세요</li>
+                    <li class="tagRank">안녕하세요</li>
+                    <li class="tagRank">안녕하세요</li>
+                    <li class="tagRank">안녕하세요</li>
+                    <li class="tagRank">안녕하세요</li>
+                </ol>
+            </div>
+            </p>
+        </div>
+    </div>
 
 </body>
 </html>

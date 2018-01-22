@@ -12,8 +12,8 @@
     <div class="loginTable">
         <div class="loginBox">
             <form class="loginForm" name="frm_login">
-                <input type="text" placeholder="Username" id="uid">
-                <input type="password" placeholder="password" name="" id="password">
+                <input type="text" name="uid" placeholder="Username" id="uid">
+                <input type="password" name="password" placeholder="password" name="" id="password">
                 <input type="button" value="로그인" id="loginButton" onclick="submitUrlHandler('frm_login', 'post', 'http://localhost:3000/auth/local')">
             </form>
             <a href="/users/register"><button id="registerButton" onclick="registerButtonHandler()">회원가입</button></a>

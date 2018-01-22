@@ -30,4 +30,8 @@ router.get('/register', isLogined, function(req, res, next){
 
 });
 
+router.get('/logout', function (req, res, next) {
+    res.redirect('http://localhost:3000/auth/logout');
+})
+
 module.exports = router;

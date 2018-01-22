@@ -4,6 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var redis = require('redis');
+var redisStore = require('connect-redis')(session);
+
+var client = redis.createClient(6379,'localhost');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -22,6 +27,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//Express session
+app.use(session({
+    secret:'secret12345@@@',
+    name: 'token',
+    cookie: {httpOnly: true, maxAge:360000},
+    store : new redisStore({
+        client:client,
+        ttl:260
+    }),
+    saveUninitialized:true,
+    resave:false
+}));
 
 app.use('/', index);
 app.use('/users', users);
