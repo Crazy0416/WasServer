@@ -1,3 +1,9 @@
+.anc_tagList{
+    width: 65%;
+    margin: auto auto;
+    text-align: right;
+    color: #00B7FF;
+}
 .tagUrl{
     line-height: 3rem;
     display: block;

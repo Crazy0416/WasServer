@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= tagTitle %></title>
+    <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" href="/stylesheets/basic.css" />
     <link rel="stylesheet" href="/stylesheets/chatroom.css" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
 </head>
 <body>
-<header>
-    <div class="pageTitle">
-        <h1><%= tagTitle %></h1>
-    </div>
-</header>
+<%- include('header')%>
 <div class="container">
     <div class="postContainer">
         a
