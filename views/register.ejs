@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript" src="/javascripts/submitUrlHandler.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
+</head>
+<body>
+<%- include('header')%>
+<div class="registerTable">
+    <div class="registerBox">
+        <form name="frm_register" class="registerForm">
+            <input type="text" name="uid" placeholder="Username" id="uid">
+            <input type="password" placeholder="password" name="password" id="password">
+            <input type="password" placeholder="password 확인" name="password2" id="password2">
+            <input type="text" name="email" placeholder="E-mail" id="email">
+            <input type="button" value="회원가입" id="registerButton" onclick="submitUrlHandler('frm_register', 'post', 'http://localhost:3000/auth/register')">
+        </form>
+    </div>
+</div>
+</body>
+</html>

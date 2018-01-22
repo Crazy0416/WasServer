@@ -21,7 +21,7 @@ router.get('/taglist', function(req, res, next){
 
   res.renderData['title'] = 'TagTalk';
 
-  res.render('index', res.renderData);
+  res.render('tagList', res.renderData);
 
 });
 

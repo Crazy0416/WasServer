@@ -4,23 +4,23 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/login.css' />
+    <script type="text/javascript" src="/javascripts/submitUrlHandler.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
 </head>
 <body>
     <%- include('header')%>
     <div class="loginTable">
         <div class="loginBox">
-            <form class="loginForm">
+            <form class="loginForm" name="frm_login">
                 <input type="text" placeholder="Username" id="uid">
                 <input type="password" placeholder="password" name="" id="password">
-                <input type="button" value="로그인" id="loginButton">
-                <input type="button" value="회원가입" id="registerButton">
+                <input type="button" value="로그인" id="loginButton" onclick="submitUrlHandler('frm_login', 'post', 'http://localhost:3000/auth/local')">
             </form>
-            <input type="button" value="Facebook" id="loginFacebookButton">
-            <input type="button" value="kakaotalk" id="loginKakaoButton">
-            <input type="button" value="naver" id="loginNaveButton">
+            <a href="/users/register"><button id="registerButton" onclick="registerButtonHandler()">회원가입</button></a>
+            <a href="#"><input type="button" value="Facebook" id="loginFacebookButton"></a>
+            <a href="#"><input type="button" value="kakaotalk" id="loginKakaoButton"></a>
+            <a href="#"><input type="button" value="naver" id="loginNaveButton"></a>
         </div>
     </div>
-
 </body>
 </html>

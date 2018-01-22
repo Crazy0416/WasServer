@@ -3,7 +3,7 @@ var redisClient = redis.createClient(6379, "127.0.0.1");        // url 설정해
 
 module.exports = function(req, res, next) {
 
-    redisClient.get(req.cookie['connect.sid'], function(err, data){
+    redisClient.get(req.cookie['token'], function(err, data){
 
         if(data == null){       // 토큰 없음
 
