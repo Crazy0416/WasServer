@@ -3,6 +3,7 @@ var router = express.Router();
 var isLogined = require('../middlewares/isLogined');
 var request = require('request');
 var authServerConfig = require('../config/authServerConfig.json');
+var uidParamAuth = require('../middlewares/uidParamAuth');
 
 router.use(function(req, res, next){
 
@@ -129,6 +130,18 @@ router.get('/logout', function (req, res, next) {
         }
 
     });
+
+});
+
+// uid와 세션의 uid가 일치하는 지 middleware로 검사
+//
+router.get('/mypage/:uid', isLogined, uidParamAuth, function(req, res, next){
+
+    res.renderData['title'] = 'TagTalk';
+
+    //TODO: 유저가 작성한 포스트를 vue로 처리
+
+    res.render('myPage', res.renderData);
 
 });
 
