@@ -45,3 +45,18 @@ header{
     display: table-cell;
     vertical-align: middle;
 }
+.container{
+    text-align: center;
+    width: 100%;
+    height: 80%;
+}
+.item{
+    margin: 1rem 1rem;
+}
+.line{
+    height: 1px;
+    width: 60%;
+    border: 1px solid black;
+    background: black;
+    margin: auto auto;
+}
