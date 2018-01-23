@@ -15,7 +15,36 @@
             <input type="password" placeholder="password" name="password" id="password">
             <input type="password" placeholder="password 확인" name="password2" id="password2">
             <input type="text" name="email" placeholder="E-mail" id="email">
-            <input type="button" value="회원가입" id="registerButton" onclick="submitUrlHandler('frm_register', 'post', 'http://localhost:3000/auth/register')">
+            <input type="button" value="회원가입" id="registerButton">
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#registerButton').click(
+                        function (){
+                            var _data = {
+                                uid: $("#uid").val(),
+                                password: $("#password").val(),
+                                password2: $("#password2").val(),
+                                email: $("#email").val()
+                            };
+                            $.ajax({
+
+                                'type' : 'POST',
+                                'url' : '/users/register',
+                                'data' : _data,
+                                'success' : function(json){
+                                    if(json['success'] === true){
+                                        alert('회원가입 완료!!');
+                                        location.replace('http://localhost:3030/');
+                                    }else{
+                                        alert('회원가입 실패');
+                                    }
+                                }
+
+                            });
+                        }
+                    )
+                })
+            </script>
         </form>
     </div>
 </div>

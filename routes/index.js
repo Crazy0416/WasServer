@@ -14,8 +14,6 @@ router.get('/', isLogined, function(req, res, next) {
 
   res.renderData['title'] = 'TagTalk';
 
-  console.log(req.session.uid);
-
   res.render('index', res.renderData);
 
 });

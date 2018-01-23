@@ -3,12 +3,10 @@ var redisClient = redis.createClient(6379, "127.0.0.1");        // url 설정해
 
 module.exports = function(req, res, next) {
 
-    console.log(JSON.stringify(req.session));
     if(req.session !== undefined){       // 토큰 있음
 
         if(req.session.uid){
 
-            console.log(JSON.stringify(req.session.uid));
             res.renderData['uid'] = req.session.uid;
             next();
 

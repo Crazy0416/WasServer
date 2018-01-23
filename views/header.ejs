@@ -12,16 +12,36 @@
     </div>
     <div class="loginStatus">
         <%if (typeof uid != 'undefined') {%>
-            <a href="/users/" + <%=uid%>>
-                <%= uid %>
-            </a>
-            <a href="/users/logout">
-                로그아웃
-            </a>
+        <a href="/users/" + <%=uid%>>
+            <%= uid %>
+        </a>
+        <button id="btnLogout">로그아웃</button>
         <%} else { %>
-            <a href="/users/login">
-                로그인
-            </a>
+        <a href="/users/login">
+            로그인
+        </a>
         <%}%>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#btnLogout').click(
+                function (){
+                    $.ajax({
+
+                        'type' : 'GET',
+                        'url' : '/users/logout',
+                        'success' : function(json){
+                            if(json['success'] === true){
+                                alert(json['message']);
+                                location.replace('http://localhost:3030/');
+                            }else{
+                                alert(json['message']);
+                            }
+                        }
+
+                    });
+                }
+            )
+        })
+    </script>
 </header>
