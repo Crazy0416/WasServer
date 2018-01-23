@@ -3,11 +3,28 @@
 <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/myPage.css" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
 </head>
 <body>
 <%- include('header')%>
+<div class="container">
+    <div class="userInfoBox">
+        <div class="userLevelImg">
+            <img src="" alt="">
+        </div>
+        <div class="userUid item">
+            <%=uid%>
+        </div>
+        <div class="userEmail item">
+            <%=email%>
+        </div>
+    </div>
+    <div class="line"></div>
+    <div class="userPostBox">
 
+    </div>
 </div>
+
 </body>
 </html>

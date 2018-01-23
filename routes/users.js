@@ -4,6 +4,8 @@ var isLogined = require('../middlewares/isLogined');
 var request = require('request');
 var authServerConfig = require('../config/authServerConfig.json');
 var uidParamAuth = require('../middlewares/uidParamAuth');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/loginapp');
 
 router.use(function(req, res, next){
 
@@ -138,6 +140,8 @@ router.get('/logout', function (req, res, next) {
 router.get('/mypage/:uid', isLogined, uidParamAuth, function(req, res, next){
 
     res.renderData['title'] = 'TagTalk';
+    res.renderData['uid'] = req.session.uid;
+    res.renderData['email'] = "아직 없다.com";          // TODO: AuthServer 업데이트 되면 처리
 
     //TODO: 유저가 작성한 포스트를 vue로 처리
 

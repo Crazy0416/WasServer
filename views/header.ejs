@@ -12,7 +12,7 @@
     </div>
     <div class="loginStatus">
         <%if (typeof uid != 'undefined') {%>
-        <a href="/users/" + <%=uid%>>
+        <a href="/users/mypage/<%=uid%>">
             <%= uid %>
         </a>
         <button id="btnLogout">로그아웃</button>
