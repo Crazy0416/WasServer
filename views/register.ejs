@@ -29,11 +29,12 @@
                             $.ajax({
 
                                 'type' : 'POST',
-                                'url' : '/users/register',
+                                'url' : 'http://localhost:3000/auth/register',
                                 'data' : _data,
                                 'success' : function(json){
                                     if(json['success'] === true){
                                         alert('회원가입 완료!!');
+                                        document.cookie('token='+json.token);
                                         location.replace('http://localhost:3030/');
                                     }else{
                                         alert('회원가입 실패');

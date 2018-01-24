@@ -27,11 +27,12 @@
                                 $.ajax({
 
                                     'type' : 'POST',
-                                    'url' : '/users/login',
+                                    'url' : 'http://localhost:3000/auth/local',
                                     'data' : _data,
                                     'success' : function(json){
                                         if(json['success'] === true){
                                             alert('로그인 완료!!');
+                                            document.cookie('token='+json.token);
                                             location.replace('http://localhost:3030/');
                                         }else{
                                             alert('로그인 실패');
