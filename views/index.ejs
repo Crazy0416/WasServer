@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="/stylesheets/basic.css" />
     <link rel="stylesheet" href="/stylesheets/index.css" />
     <script src="/javascripts/submitUrlHandler.js"></script>
+    <script src="/javascripts/echarts.min.js"></script>
+    <script src="/javascripts/echarts-wordcloud.min.js"></script>
+    <script src="/javascripts/wordcloud.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
   </head>
   <body>
@@ -15,9 +20,47 @@
     <a href="/tagList">더 보기..</a>
   </div>
 
-  <div class="rankRoom">
-    <a href="#">hello</a>
+  <div class="rankRoom" id="wordcloudBox">
   </div>
+  <script type="text/javascript">
+    $(document).ready(function(){
+
+    })
+
+  </script>
+  <script type="text/javascript">
+      var dummyDataBinding = new Vue({
+          data: {
+              posts: [],
+              errors: []
+          },
+
+          // Fetches posts when the component is created.
+          created: function () {
+              axios.get('http://localhost:3030/tags/hotlist')
+                  .then(function(response) {
+                      // JSON responses are automatically parsed.
+                      this.posts = response.data
+                      wordcloud('wordcloudBox',response.data);
+                  }.bind(this))
+                  .catch(function(e) {
+                      this.errors.push(e)
+                  });
+              console.log(this.posts)
+          },
+          computed: {
+              reverse: function() {
+                  return this.posts.reverse();
+              },
+
+              orderedUsers: function () {
+                  return _.orderBy(this.posts, 'first_name')
+              }
+          },
+          methods: {
+          }
+      });
+  </script>
 
   <div class="tagUrl">
     <form class="tagUrl" name="frm_tagUrl">
