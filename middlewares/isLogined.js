@@ -3,19 +3,27 @@ var redisClient = redis.createClient(6379, "127.0.0.1");        // url 설정해
 
 module.exports = function(req, res, next) {
 
-    if(req.session !== undefined){       // 토큰 있음
+    console.log('req cookie: ' + JSON.stringify(req.cookies));
 
-        if(req.session.uid){
-
-            res.renderData['uid'] = req.session.uid;
-            next();
-
-        }else {
-            next();
-        }
+    if(req.cookies['token'] === undefined){
+        next();
 
     } else {
-        next();
-    }
 
+        redisClient.get("sess:"+ req.cookies.token, function(err, val){
+
+            if(val !== null) {       // 토큰 있음
+
+                req.session = JSON.parse(val);                              // 세션처럼 사용하기 위해
+                res.renderData['uid'] = req.session.uid;
+                console.log('req session uid: ' + req.session.uid);
+                next();
+
+            } else {
+                console.log("no find");
+                next();
+
+            }
+        });
+    }
 };

@@ -32,7 +32,7 @@
                                     'success' : function(json){
                                         if(json['success'] === true){
                                             alert('로그인 완료!!');
-                                            document.cookie('token='+json.token);
+                                            document.cookie = 'token='+json['data']['token'] + ';path=/';
                                             location.replace('http://localhost:3030/');
                                         }else{
                                             alert('로그인 실패');

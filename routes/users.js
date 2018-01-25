@@ -6,6 +6,8 @@ var authServerConfig = require('../config/authServerConfig.json');
 var uidParamAuth = require('../middlewares/uidParamAuth');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/loginapp');
+var redis = require('redis');
+var redisClient = redis.createClient(6379, "127.0.0.1");        // url 설정해서 db 공간을 바꿀 수 있음
 
 router.use(function(req, res, next){
 
@@ -117,9 +119,9 @@ router.get('/register', isLogined, function(req, res, next){
 
 router.get('/logout', function (req, res, next) {
 
-    req.session.destroy(function(err){
+    redisClient.del("sess:"+ req.cookies.token,function(err, val){
 
-        if(err){
+        if(err || val==0){
             res.json({
                 success: false,
                 message: "로그아웃 오류!"
