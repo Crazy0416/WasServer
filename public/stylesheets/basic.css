@@ -20,7 +20,7 @@ header{
     line-height: inherit;
     display: table;
     width: 100%;
-    height: 7.5rem;
+    height: 11%;
 }
 .rightClass{
     width: 28%;
@@ -48,7 +48,7 @@ header{
 .container{
     text-align: center;
     width: 100%;
-    height: 100%;
+    height: 80%;
 }
 .item{
     margin: 1rem 1rem;

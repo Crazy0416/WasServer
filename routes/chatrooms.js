@@ -3,11 +3,13 @@ var router = express.Router();
 var redis = require('redis');
 var redisClient = redis.createClient(6379, "127.0.0.1");
 var hosts = require('../config/hosts.json');
+var isLogined = require('../middlewares/isLogined');
 
 router.use(function(req, res, next){
     res.renderData = {};          // render 할 때 보낼 객체
     next();
 });
+router.use(isLogined);
 
 var promise1 = new Promise(function (resolve, reject) {
 

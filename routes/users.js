@@ -15,13 +15,14 @@ router.use(function(req, res, next){
     next();
 
 });
+router.use(isLogined);
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/login', isLogined, function(req, res, next){
+router.get('/login', function(req, res, next){
 
     res.renderData['title'] = 'TagTalk';
 
@@ -69,7 +70,7 @@ router.get('/login', isLogined, function(req, res, next){
 //
 // });
 
-router.get('/register', isLogined, function(req, res, next){
+router.get('/register', function(req, res, next){
 
     res.renderData['title'] = 'TagTalk';
 
@@ -139,7 +140,7 @@ router.get('/logout', function (req, res, next) {
 
 // uid와 세션의 uid가 일치하는 지 middleware로 검사
 //
-router.get('/mypage/:uid', isLogined, uidParamAuth, function(req, res, next){
+router.get('/mypage/:uid', uidParamAuth, function(req, res, next){
 
     res.renderData['title'] = 'TagTalk';
     res.renderData['uid'] = req.session.uid;
