@@ -9,7 +9,6 @@ router.use(function(req, res, next){
 router.get('/page/:card_id', function(req, res, next){
 
     // TODO: 몽고 디비에서 데이터 추출해야함
-    console.log('test');
 
     res.renderData['title'] = "테스트 맨!";
 

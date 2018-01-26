@@ -20,7 +20,7 @@ module.exports = function(req, res, next) {
                 next();
 
             } else {
-                console.log("no find");
+                console.log("req session uid: no find");
                 next();
 
             }

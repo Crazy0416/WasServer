@@ -14,4 +14,4 @@ module.exports = function uidParamAuth(req, res, next){
         });
     }
 
-}
+};
