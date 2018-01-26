@@ -11,11 +11,6 @@ router.use(function(req, res, next){
 });
 router.use(isLogined);
 
-var promise1 = new Promise(function (resolve, reject) {
-
-
-
-});
 
 /*
 * GET /chatroom/:tag/:id?
