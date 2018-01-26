@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/writeCard.css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
+</head>
+<body>
+<div class="container">
+    <form action="http://localhost:3000/" id="writePost" class="writePost">
+        <input type="text" name="user_ObjectId" style="display: none" />
+        <input type="text" name="card_id" value="0" style="display: none"/>
+        <div class="titleBox inputBox">
+            제목 : <input type="text" name="title"/>
+        </div>
+        <div class="contentBox inputBox">
+            내용 : <input type="text" name="content"/>
+        </div>
+        <div class="tagBox inputBox">
+            태그 : <input type="text" name="tag" placeholder="예) #태그내용 #태그내용"/>
+        </div>
+        <div class="fileBox inputBox">
+            <input type="file" name="photo"/>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

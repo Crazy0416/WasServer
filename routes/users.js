@@ -29,46 +29,6 @@ router.get('/login', function(req, res, next){
     res.render('login', res.renderData);
 
 });
-//
-// router.post('/login', isLogined, function(req, res, next){
-//
-//     res.renderData['title'] = 'TagTalk';
-//
-//     var reqOption = {
-//         url: ('http://' + authServerConfig.domain + authServerConfig.login),
-//         method:"POST",
-//         headers: {
-//             cookie: JSON.stringify(req.cookies)
-//         },
-//         form: req.body
-//     };
-//
-//     request(reqOption, function(err, res1, body1){
-//
-//         var success = JSON.parse(res1.body)['success'];
-//         var cookie = res1.headers['set-cookie'];
-//
-//         if(err){
-//             console.log(err);
-//             res.json({
-//                 success: false,
-//                 message: "Server ERR"
-//             })
-//         }else {
-//
-//             if(success){
-//
-//                 req.session.destroy();                      // 원래 세션 삭제(로그인 되면 다른 토큰값을 줌;;)
-//                 res.set({'Set-Cookie' : cookie});
-//                 res.json(JSON.parse(body1));
-//
-//             }else {
-//                 res.json(JSON.parse(body1));
-//             }
-//         }
-//     })
-//
-// });
 
 router.get('/register', function(req, res, next){
 
@@ -77,46 +37,6 @@ router.get('/register', function(req, res, next){
     res.render('register', res.renderData);
 
 });
-//
-// router.post('/register', isLogined, function(req, res, next){
-//
-//     res.renderData['title'] = 'TagTalk';
-//
-//     var reqOption = {
-//         url: ('http://' + authServerConfig.domain + authServerConfig.register),
-//         method:"POST",
-//         headers: {
-//             cookie: JSON.stringify(req.cookies)
-//         },
-//         form: req.body
-//     };
-//
-//     request(reqOption, function(err, res1, body1){
-//
-//         var success = JSON.parse(res1.body)['success'];
-//         var cookie = res1.headers['set-cookie'];
-//
-//         if(err){
-//             console.log(err);
-//             res.json({
-//                 success: false,
-//                 message: "Server ERR"
-//             })
-//         }else {
-//             console.log(body1);
-//             if(success){
-//
-//                 req.session.destroy();                      // 원래 세션 삭제(로그인 되면 다른 토큰값을 줌;;)
-//                 res.set({'Set-Cookie' : cookie});
-//                 res.json(JSON.parse(body1));
-//
-//             }else {
-//                 res.json(JSON.parse(body1));
-//             }
-//         }
-//     })
-//
-// })
 
 router.get('/logout', function (req, res, next) {
 
@@ -149,6 +69,26 @@ router.get('/mypage/:uid', uidParamAuth, function(req, res, next){
     //TODO: 유저가 작성한 포스트를 vue로 처리
 
     res.render('myPage', res.renderData);
+
+});
+
+router.get('/card/:card_id', function(req, res, next){
+
+    // TODO: 몽고 디비에서 데이터 추출해야함
+
+    res.renderData['title'] = "테스트 맨!";
+
+    res.render('post', res.renderData);
+
+});
+
+router.get('/writeCard', function(req, res, next){
+
+    // TODO: 몽고 디비에서 데이터 추출해야함
+
+    res.renderData['title'] = "포스트 작성 페이지";
+
+    res.render('writeCard', res.renderData);
 
 });
 

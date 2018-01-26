@@ -1,0 +1,9 @@
+#writePost{
+    display: inline-block;
+    vertical-align: center;
+    margin: auto auto;
+}
+
+.inputBox{
+    padding: 0.3rem;
+}
