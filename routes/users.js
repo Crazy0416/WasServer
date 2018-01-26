@@ -144,7 +144,7 @@ router.get('/mypage/:uid', uidParamAuth, function(req, res, next){
 
     res.renderData['title'] = 'TagTalk';
     res.renderData['uid'] = req.session.uid;
-    res.renderData['email'] = "아직 없다.com";          // TODO: AuthServer 업데이트 되면 처리
+    res.renderData['email'] = req.session.email;          // TODO: AuthServer 업데이트 되면 처리
 
     //TODO: 유저가 작성한 포스트를 vue로 처리
 
