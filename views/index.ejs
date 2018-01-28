@@ -16,10 +16,6 @@
   <body>
   <%- include('header')%>
 
-  <div class="anc_tagList">
-    <a href="/tagList">더 보기..</a>
-  </div>
-
   <div class="rankRoom" id="wordcloudBox">
   </div>
   <script type="text/javascript">
@@ -56,9 +52,13 @@
       });
   </script>
 
+  <div class="anc_tagList">
+    <a href="/tagList">태그 더 보기</a>
+  </div>
+
   <div class="tagUrl">
     <form class="tagUrl" name="frm_tagUrl">
-      <input type="text" id="tagUrl" class="input_tagUrl" placeholder="입장할 태그를 입력하세요">
+      <input type="text" id="tagUrl" class="input_tagUrl" placeholder="    입장할 태그를 입력하세요">
       <input type="button" class="btn_url" value="이동" onclick="getChatRoom()">
     </form>
   </div>

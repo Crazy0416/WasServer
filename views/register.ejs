@@ -3,6 +3,7 @@
 <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/register.css' />
     <script type="text/javascript" src="/javascripts/submitUrlHandler.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
 </head>
@@ -10,12 +11,22 @@
 <%- include('header')%>
 <div class="registerTable">
     <div class="registerBox">
+        <h2>Register</h2>
         <form name="frm_register" class="registerForm">
+            <div class=form-input">
             <input type="text" name="uid" placeholder="Username" id="uid">
+            </div>
+            <div class=form-input">
             <input type="password" placeholder="password" name="password" id="password">
+            </div>
+            <div class=form-input">
             <input type="password" placeholder="password 확인" name="password2" id="password2">
+            </div>
+            <div class=form-input">
             <input type="text" name="email" placeholder="E-mail" id="email">
-            <input type="button" value="회원가입" id="registerButton">
+            </div>
+
+            <input type="button" value="회원가입" id="registerButton" class="btn-register">
             <script type="text/javascript">
                 $(document).ready(function() {
                     $('#registerButton').click(

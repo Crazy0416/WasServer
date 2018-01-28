@@ -6,8 +6,16 @@
 .tagTitle{
     margin: 1.5rem;
     font-size: 1.5rem;
+    color: #2b9f5e;
+    /*transform: translateX(-50%) rotate(-10deg);*/
+    transform: skew(-10deg);
+    text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px, #533d4a 4px 4px, #533d4a 5px 5px, #533d4a 6px 6px;
+    min-width: 10px;
+    min-height: 10px;
+
 }
 .tagRank{
     margin: 1rem;
     font-size: 1.3rem;
 }
+
