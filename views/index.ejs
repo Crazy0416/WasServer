@@ -1,72 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
   <head>
     <title><%= title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/basic.css" />
     <link rel="stylesheet" href="/stylesheets/index.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
     <script src="/javascripts/submitUrlHandler.js"></script>
     <script src="/javascripts/echarts.min.js"></script>
     <script src="/javascripts/echarts-wordcloud.min.js"></script>
     <script src="/javascripts/wordcloud.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
   </head>
   <body>
-  <%- include('header')%>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <%- include('header')%>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1 offset-11">
+          <a href="/tagList">더 보기..</a>
+        </div>
+      </div>
 
-  <div class="anc_tagList">
-    <a href="/tagList">더 보기..</a>
-  </div>
+      <div class="rankRoom" id="wordcloudBox">
 
-  <div class="rankRoom" id="wordcloudBox">
-  </div>
-  <script type="text/javascript">
-      var dummyDataBinding = new Vue({
-          data: {
-              posts: [],
-              errors: []
-          },
+      </div>
 
-          // Fetches posts when the component is created.
-          created: function () {
-              axios.get('http://localhost:3030/tags/hotlist')
-                  .then(function(response) {
-                      // JSON responses are automatically parsed.
-                      this.posts = response.data
-                      wordcloud('wordcloudBox',response.data);
-                  }.bind(this))
-                  .catch(function(e) {
-                      this.errors.push(e)
-                  });
-              console.log(this.posts)
-          },
-          computed: {
-              reverse: function() {
-                  return this.posts.reverse();
+      <script type="text/javascript">
+          var dummyDataBinding = new Vue({
+              data: {
+                  posts: [],
+                  errors: []
               },
 
-              orderedUsers: function () {
-                  return _.orderBy(this.posts, 'first_name')
-              }
-          },
-          methods: {
-          }
-      });
-  </script>
+              // Fetches posts when the component is created.
+              created: function () {
+                  axios.get('http://localhost:3030/tags/hotlist')
+                      .then(function(response) {
+                          // JSON responses are automatically parsed.
+                          this.posts = response.data
+                          wordcloud('wordcloudBox',response.data);
+                      }.bind(this))
+                      .catch(function(e) {
+                          this.errors.push(e)
+                      });
+                  console.log(this.posts)
+              },
+              computed: {
+                  reverse: function() {
+                      return this.posts.reverse();
+                  },
 
-  <div class="tagUrl">
-    <form class="tagUrl" name="frm_tagUrl">
-      <input type="text" id="tagUrl" class="input_tagUrl" placeholder="입장할 태그를 입력하세요">
-      <input type="button" class="btn_url" value="이동" onclick="getChatRoom()">
-    </form>
-  </div>
-  <script language="javascript">
-    function getChatRoom(){
-        var url = $('#tagUrl').val();
-        submitUrlHandler("frm_tagUrl", "get", "chatrooms/"+url);
-    }
-  </script>
+                  orderedUsers: function () {
+                      return _.orderBy(this.posts, 'first_name')
+                  }
+              },
+              methods: {
+              }
+          });
+      </script>
+
+      <div class="row justify-content-center">
+        <form class="from-group col-10 row justify-content-around" name="frm_tagUrl">
+          <input type="text" id="tagUrl" class="col-8 form-control" placeholder="입장할 태그를 입력하세요">
+          <input type="button" class="col-2 btn btn-primary" value="이동" onclick="getChatRoom()">
+        </form>
+      </div>
+      <script language="javascript">
+          function getChatRoom(){
+              var url = $('#tagUrl').val();
+              submitUrlHandler("frm_tagUrl", "get", "chatrooms/"+url);
+          }
+      </script>
+    </div>
   </body>
 </html>

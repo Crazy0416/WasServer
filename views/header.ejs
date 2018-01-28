@@ -1,27 +1,30 @@
 <link rel="stylesheet" href="/stylesheets/basic.css" />
-<header>
-    <div class="rightClass">
+<header class="container-fluid">
+    <div class="row justify-content-around">
+        <div class="rightClass">
 
-    </div>
-    <div class="pageTitle">
-        <h1>
-            <a href="/">
-                <%= title %>
+        </div>
+        <div class="pageTitle">
+            <h1>
+                <a href="/">
+                    <%= title %>
+                </a>
+            </h1>
+        </div>
+        <div class="loginStatus">
+            <%if (typeof uid != 'undefined') {%>
+            <a href="/users/mypage/<%=uid%>">
+                <%= uid %>
             </a>
-        </h1>
+            <button id="btnLogout">로그아웃</button>
+            <%} else { %>
+            <a href="/users/login">
+                로그인
+            </a>
+            <%}%>
+        </div>
     </div>
-    <div class="loginStatus">
-        <%if (typeof uid != 'undefined') {%>
-        <a href="/users/mypage/<%=uid%>">
-            <%= uid %>
-        </a>
-        <button id="btnLogout">로그아웃</button>
-        <%} else { %>
-        <a href="/users/login">
-            로그인
-        </a>
-        <%}%>
-    </div>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('#btnLogout').click(
