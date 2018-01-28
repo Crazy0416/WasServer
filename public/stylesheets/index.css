@@ -1,8 +1,8 @@
-.anc_tagListBox > .col-md-1{
+.anc_tagListBox > .col-md-2{
     margin-top: 1rem;
     text-align: right;
 }
-.anc_tagListBox > .col-md-1 > a{
+.anc_tagListBox > .col-md-2 > a{
     font-family: "배달의민족 주아";
     font-size: 1.5rem;
 }
