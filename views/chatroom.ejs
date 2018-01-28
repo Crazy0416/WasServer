@@ -3,59 +3,88 @@
 <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/basic.css' />
     <link rel="stylesheet" href="/stylesheets/chatroom.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
 <%- include('header')%>
-<div class="container">
-    <div class="postContainer">
-        <%= chatServerAdress %>
-    </div>
-    <div class="chatContainer">
-        <div class="chatView">
-            <div class="chatMessage_Container">
-                <div class="chatMessage_divImage">
-                    <img class="chatMessage_Image" src="/images/ChatMessage/publicUser2.png" alt="">
+<div class="main container-fluid">
+    <div class="chatroomContainer row justify-content-around">
+        <div class="postContainer col-9">
+            <div class="postView container-fluid">
+                <div class="row postContent">
+                    <div class="col-12">
+                        <p style="color: black"><%= chatServerAdress %></p>
+                    </div>
                 </div>
-                <div class="chatMessage_uid">
-                    홍길동
+                <div class="row postContent">
+                    <div class="col-12">
+                        <p style="color: black"><%= chatServerAdress %></p>
+                    </div>
                 </div>
-                <div class="chatMessage_message">
-                    와 개 쩔었다.
+                <div class="row postContent">
+                    <div class="col-12">
+                        <p style="color: black"><%= chatServerAdress %></p>
+                    </div>
                 </div>
-            </div>
-            <div class="chatMessage_Container">
-                <div class="chatMessage_divImage">
-                    <img class="chatMessage_Image" src="/images/ChatMessage/publicUser2.png" alt="">
+                <div class="row postContent">
+                    <div class="col-12">
+                        <p style="color: black"><%= chatServerAdress %></p>
+                    </div>
                 </div>
-                <div class="chatMessage_uid">
-                    왕감자
-                </div>
-                <div class="chatMessage_message">
-                    채팅 창 같다.
-                </div>
-            </div>
-            <div class="chatMessage_Container">
-                <div class="chatMessage_divImage">
-                    <img class="chatMessage_Image" src="/images/ChatMessage/publicUser2.png" alt="">
-                </div>
-                <div class="chatMessage_uid">
-                    왓더헥
-                </div>
-                <div class="chatMessage_message">
-                    미쳤따리 미쳤따리 미쳤따리 미쳤따리 미쳤따리
-                    미쳤따리 미쳤따리 미쳤따리
+                <div class="row postContent">
+                    <div class="col-12">
+                        <p style="color: black"><%= chatServerAdress %></p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="chatForm">
-            <form id="chatForm">
-                <input type="text" id="chatTextBox">
-                <input type="submit" id="chatSubmit" value="채팅">
-            </form>
+        <div class="chatContainer col-3">
+            <div class="chatView container-fluid">
+                <div class="row chatContent justify-content-center">
+                    <div class="col-11">
+                        <div class="chatMessage_divImage">
+                            <img class="chatMessage_Image" src="/images/ChatMessage/publicUser2.png" alt="">
+                        </div>
+                        <div class="chatMessage_uid">
+                            홍길동
+                        </div>
+                        <div class="chatMessage_message">
+                            와 개 쩔었다.
+                        </div>
+                    </div>
+                </div>
+                <div class="row chatContent justify-content-center">
+                    <div class="col-11">
+                        <div class="chatMessage_divImage">
+                            <img class="chatMessage_Image" src="/images/ChatMessage/publicUser2.png" alt="">
+                        </div>
+                        <div class="chatMessage_uid">
+                            홍길동
+                        </div>
+                        <div class="chatMessage_message">
+                            와 개 쩔었다.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="chatForm">
+                <form id="chatForm">
+                    <input type="text" class="form-control" id="chatTextBox" placeholder="채팅내용 입력">
+                    <input type="submit" class="btn btn-primary" id="chatSubmit" value="채팅">
+                </form>
+            </div>
         </div>
     </div>
+
 </div>
 </body>
 </html>

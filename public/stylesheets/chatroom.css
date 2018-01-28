@@ -1,50 +1,55 @@
-
-
-.container{
-    height: 80%;
-    width: auto;
-    border: 2px black solid;
-    padding: 1rem;
-    margin: 1rem;
+.main{
+    min-height: 94%;
+    height: 94%;
 }
-
-.postContainer{
-    width: 70%;
+.chatroomContainer{
+    width: auto;
     height: 100%;
-    border: 1px black solid;
-    float:left;
-    margin-right: 0.5rem;
+}
+.postContainer{
+    height: 100%;
+    overflow: auto;
+}
+.postView{
+    overflow: auto;
+}
+.postContent{
+    background-color: white;
+    margin: 1.5rem 1.5rem;
 }
 .chatContainer{
-    width: 28%;
-    height: 100%;
     border: 1px black solid;
-    float:left;
-    position: relative;
+    overflow: hidden;
 }
 .chatView{
+    overflow: auto;
+    height: 87%;
     border: 1px black solid;
-    height: 93%;
-    margin: 1px;
-    padding: 0.5rem;
+    background-color: white;
 }
 .chatForm{
     width: 100%;
-    position: absolute;
-    clear: left;
-    left: 1px;
-    bottom: 0px;
 }
 #chatTextBox{
-    width: 70%;
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
 }
 #chatSubmit{
-    width: 26%;
+    display: block;
+    background-color: #4d4d4d;
+    font-family: "배달의민족 주아";
+    font-size: 1.4rem;
+    float: right;
+
 }
-.chatMessage_Container{
-    background-color: darkgrey;
+#chatForm > .btn:hover{
+    background-color: #3293F3;
+}
+
+.chatContent{
     line-height: 20px;
-    margin: 0.2rem;
+    margin: 1rem 1rem;
 }
 
 .chatMessage_divImage{
@@ -63,8 +68,10 @@
     font-weight: bold;
     display: inline-block;
     vertical-align: middle;
+    color: black;
 }
 .chatMessage_message{
     display: inline-block;
     vertical-align: middle;
+    color: black;
 }
