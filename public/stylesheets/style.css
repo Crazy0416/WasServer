@@ -1,7 +1,8 @@
 * {
   margin: 0px;
   padding: 0px;
-  font: "배달의민족 주아";
+  font-family: "배달의민족 주아";
+  color: aliceblue;
 }
 html, body {
   height: 100%;

@@ -25,7 +25,7 @@ header > .row{
     text-align: left;
 }
 .TitleHead > h2{
-    margin-top: 2px;
+    margin-top: 8px;
 }
 .TitleHead > h2 > a{
     color: aliceblue;
@@ -47,7 +47,7 @@ header > .row{
     display: inline-block;
     color: aliceblue;
     font-family: "배달의민족 주아";
-    margin-top: 6px;
+    margin-top: 7px;
 }
 .item{
     margin: 1rem 1rem;
