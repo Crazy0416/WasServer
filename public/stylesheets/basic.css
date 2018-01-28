@@ -5,43 +5,49 @@ body{
 a{
     text-decoration: unset;
     color: unset;
-    color: black;
-}
-h1 > a{
     color: aliceblue;
-    font-family: "배달의민족 주아";
 }
-.loginStatus > a{
+a:hover{
+    text-decoration:none;
     color: aliceblue;
-    font-family: "배달의민족 주아";
 }
 header{
     align-items: center;
-    line-height: inherit;
-    display: table;
     background-color: #212121;
-}
-.header{
     height: 5%;
     width: 100%;
 }
-.rightClass{
-    display: table-cell;
-    vertical-align: middle;
+header > .row{
+    height: 100%;
+    width: 100%;
 }
-.pageTitle{
+.TitleHead{
+    text-align: left;
+}
+.TitleHead > h2{
+    margin-top: 2px;
+}
+.TitleHead > h2 > a{
+    color: aliceblue;
+    font-family: "배달의민족 주아";
+}
+.middleHead{
     text-align: center;
     vertical-align: middle;
     font-size: 2rem;
     border: 2px black;
     color: black;
-    display: table-cell;
 }
-.loginStatus{
+.loginHead{
     text-align: center;
     color: black;
-    display: table-cell;
-    vertical-align: middle;
+}
+.loginHead > a{
+    font-size: 1.5rem;
+    display: inline-block;
+    color: aliceblue;
+    font-family: "배달의민족 주아";
+    margin-top: 6px;
 }
 .item{
     margin: 1rem 1rem;

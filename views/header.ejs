@@ -1,17 +1,16 @@
 <link rel="stylesheet" href="/stylesheets/basic.css" />
-<header class="header container-fluid">
-    <div class="row justify-content-around">
-        <div class="rightClass">
-
-        </div>
-        <div class="pageTitle">
-            <h1>
+<header class="container-fluid">
+    <div class="row">
+        <div class="TitleHead col-2 offset-1">
+            <h2>
                 <a href="/">
                     <%= title %>
                 </a>
-            </h1>
+            </h2>
         </div>
-        <div class="loginStatus">
+        <div class="middleHead col-6">
+        </div>
+        <div class="loginHead col-3">
             <%if (typeof uid != 'undefined') {%>
             <a href="/users/mypage/<%=uid%>">
                 <%= uid %>
