@@ -26,11 +26,11 @@
                 <input type="text" name="email" placeholder="E-mail" id="email">
             </div>
             <div class=form-input">
-                <input type="number" name="age" min="1" max="200" placeholder="age">
+                <input type="number" name="age" id="age" min="1" max="200" placeholder="age">
             </div>
             <div class="form-input">
-                <input type="radio" name="gender" id="" value="male" checked="checked">male
-                <input type="radio" name="gender" id="" value="female">female
+                <input type="radio" name="gender" value="male" checked="checked">male
+                <input type="radio" name="gender" value="female">female
             </div>
 
             <input type="button" value="회원가입" id="registerButton" class="btn-register">
@@ -43,7 +43,9 @@
                                 uid: $("#uid").val(),
                                 password: $("#password").val(),
                                 password2: $("#password2").val(),
-                                email: $("#email").val()
+                                email: $("#email").val(),
+                                gender: $("input[type=radio][name=gender]:checked").val(),
+                                age: $('#age').val()
                             };
                             $.ajax({
 
@@ -56,7 +58,7 @@
                                         document.cookie = 'token='+json['data']['token'] + ';path=/';
                                         location.replace('http://localhost:3030/');
                                     }else{
-                                        alert('회원가입 실패');
+                                        alert(JSON.stringify(json));
                                     }
                                 }
 
