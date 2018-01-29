@@ -32,6 +32,11 @@ h2 {
     transform: skew(-10deg);
 }
 
+input[type=radio]{
+    margin:8px 13px 20px 15px;
+    font: 20px "Lucida Grande";
+}
+
 
 input[type="text"], input[type="password"], input[type="number"]{
     height:45px;
