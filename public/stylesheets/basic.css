@@ -57,12 +57,22 @@ header{
     color: #533d4a;
     font-weight: bold;
     font-size: 19px;
-/*  color: #2b9f5e;
-    text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px;*/
-
     display: table-cell;
     vertical-align: middle;
 }
+
+.button{
+    width: 15%;
+    text-align: center;
+    vertical-align: middle;
+    color: #533d4a;
+    /*background-color: #f1c83c;*/
+    background-color: #EBE9D1;
+    border: 2px solid #533d4a;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
 .container{
     text-align: center;
     width: 100%;
@@ -74,7 +84,8 @@ header{
 .line{
     height: 1px;
     width: 70%;
-    border: 1px solid black;
-    background: black;
-    margin: auto auto;
+    border: 2px solid black;
+    background: #f1c83c;
+    margin: 1% auto 1% auto;
+   /* box-shadow: 0px -10px 0px black;*/
 }
