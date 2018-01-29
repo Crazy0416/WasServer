@@ -29,7 +29,6 @@
       </div>
 
       <div class="rankRoom" id="wordcloudBox">
-
       </div>
 
       <script type="text/javascript">
@@ -38,7 +37,6 @@
                   posts: [],
                   errors: []
               },
-
               // Fetches posts when the component is created.
               created: function () {
                   axios.get('http://localhost:3030/tags/hotlist')
@@ -66,18 +64,21 @@
           });
       </script>
 
-      <div class="row justify-content-center">
-        <form class="from-group col-10 row justify-content-around" name="frm_tagUrl">
-          <input type="text" id="tagUrl" class="col-8 form-control" placeholder="입장할 태그를 입력하세요">
-          <input type="button" class="col-2 btn btn-primary" value="이동" onclick="getChatRoom()">
-        </form>
-      </div>
-      <script language="javascript">
-          function getChatRoom(){
-              var url = $('#tagUrl').val();
-              submitUrlHandler("frm_tagUrl", "get", "chatrooms/"+url);
-          }
-      </script>
-    </div>
+  <div class="anc_tagList">
+    <a href="/tagList">태그 더 보기</a>
+  </div>
+
+  <div class="tagUrl">
+    <form class="tagUrl" name="frm_tagUrl">
+      <input type="text" id="tagUrl" class="input_tagUrl" placeholder="    입장할 태그를 입력하세요">
+      <input type="button" class="btn_url" value="이동" onclick="getChatRoom()">
+    </form>
+  </div>
+  <script language="javascript">
+    function getChatRoom(){
+        var url = $('#tagUrl').val();
+        submitUrlHandler("frm_tagUrl", "get", "chatrooms/"+url);
+    }
+  </script>
   </body>
 </html>

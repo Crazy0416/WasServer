@@ -9,13 +9,25 @@
     <script src="/javascripts/btnAjaxHandler.js"></script>
 </head>
 <body>
+
     <%- include('header')%>
     <div class="loginTable">
         <div class="loginBox">
+            <h2>Login</h2>
             <form class="loginForm" name="frm_login" method="post" action="http://localhost:3000/auth/local">
+                    <div class=form-input">
+                        <input type="text" name="uid" placeholder="Username" id="uid"></div>
+                    <div class="form-input">
+                        <input type="password" name="password" placeholder="Password" id="password">
+                     </div>
+                <input type="button" value="Login" id="loginBtn" class="btn-login">
+
+               <!--
+                <form class="loginForm" name="frm_login" method="post" action="http://localhost:3000/auth/local">
                 <input type="text" name="uid" placeholder="Username" id="uid">
                 <input type="password" name="password" placeholder="password" id="password">
-                <input type="button" value="로그인" id="loginBtn">
+                <input type="button" value="로그인" id="loginBtn">-->
+
                 <script type="text/javascript">
                     $(document).ready(function() {
                         $('#loginBtn').click(
@@ -45,10 +57,28 @@
                     })
                 </script>
             </form>
-            <a href="/users/register"><button id="registerButton" onclick="registerButtonHandler()">회원가입</button></a>
-            <a href="#"><input type="button" value="Facebook" id="loginFacebookButton"></a>
+
+           <!-- <a href="/users/register"><button id="registerButton" onclick="registerButtonHandler()">Register</button></a>
+           <a href="#"><input type="button" value="Facebook" id="loginFacebookButton"></a>-->
+
+            <button class="loginBtn loginBtn--facebook">
+                Login with Facebook
+            </button>
+
+            <button class="loginBtn loginBtn--google">
+                Login with Google
+            </button>
+
+            <p>
+                <a href="/users/register">Register new account!</a>
+            </p>
+
+
+            <!-- <a href="#">Facebook Login</a>-->
+           <!--
             <a href="#"><input type="button" value="kakaotalk" id="loginKakaoButton"></a>
             <a href="#"><input type="button" value="naver" id="loginNaveButton"></a>
+        -->
         </div>
     </div>
 </body>

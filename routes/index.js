@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var isLogined = require('../middlewares/isLogined');
+var addSessionObj = require('../middlewares/addSessionObj');
 
 router.use(function(req, res, next){
 
@@ -10,7 +10,7 @@ router.use(function(req, res, next){
 });
 
 /* GET home page. */
-router.get('/', isLogined, function(req, res, next) {
+router.get('/', addSessionObj, function(req, res, next) {
 
   res.renderData['title'] = 'TagTalk';
 

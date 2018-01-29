@@ -1,6 +1,8 @@
-body{
-    color: #3293F3;
-    background-color: #3293F3;
+@import url(https://fonts.googleapis.com/css?family=Fjalla+One);
+
+* {
+    margin: 0px;
+    padding: 0px;
 }
 a{
     text-decoration: unset;
@@ -35,12 +37,32 @@ header > .row{
     text-align: center;
     vertical-align: middle;
     font-size: 2rem;
-    border: 2px black;
-    color: black;
+    border: 2px black;  /* 얘는 뭐지 */
+    color: #f1c83c;
+    display: table-cell;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /*노란섀도우, 밑은 갈색섀도우*/
+    text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px, #533d4a 4px 4px,#533d4a 5px 5px,#533d4a 6px 6px;
+    transform: skew(-10deg); /* 기울기 */
+    /*display: block; 얘는 블럭이라 하면 앞으로 감 */
+    /*float: left;*/
+    /*min-width: 10px;
+    min-height: 10px;*/
+    /*position: relative;*/
+
 }
-.loginHead{
+
+/*메인페이지 로그인*/
+.loginStatus{
+    width: 30%;
     text-align: center;
-    color: black;
+    color: #533d4a;
+    font-weight: bold;
+    font-size: 19px;
+/*  color: #2b9f5e;
+    text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px;*/
+
+    display: table-cell;
+    vertical-align: middle;
 }
 .loginHead > a{
     font-size: 1.5rem;

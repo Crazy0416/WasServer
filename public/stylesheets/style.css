@@ -8,14 +8,22 @@ html, body {
   height: 100%;
   padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-
+  font-family: 'Fjalla One', sans-serif;
+  background: #EBE9D1;
+ /* background: linear-gradient(to bottom, #405166 0%,#00B7FF 100%);*/
+  /*background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%)*/
 }
 
-h1{
-  display: inline-block;
+/*#656f6f*/
+
+/*
+$light: #EBE9D1 -> 상아색
+ */
+/*
+
+body{
+  font-family: 'Fjalla One', sans-serif;
+  background: $background;
 }
-.selector-for-some-widget {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-}
+$background: linear-gradient(to bottom, #405166 0%,#656f6f 100%);
+ */

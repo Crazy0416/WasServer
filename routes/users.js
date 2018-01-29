@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var isLogined = require('../middlewares/isLogined');
+var addSessionObj = require('../middlewares/addSessionObj');
 var request = require('request');
-var authServerConfig = require('../config/authServerConfig.json');
 var uidParamAuth = require('../middlewares/uidParamAuth');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/loginapp');
@@ -15,7 +14,7 @@ router.use(function(req, res, next){
     next();
 
 });
-router.use(isLogined);
+router.use(addSessionObj);
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {

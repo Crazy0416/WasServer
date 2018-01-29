@@ -3,6 +3,7 @@
 <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/register.css' />
     <script type="text/javascript" src="/javascripts/submitUrlHandler.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
 </head>
@@ -10,12 +11,30 @@
 <%- include('header')%>
 <div class="registerTable">
     <div class="registerBox">
+        <h2>Register</h2>
         <form name="frm_register" class="registerForm">
-            <input type="text" name="uid" placeholder="Username" id="uid">
-            <input type="password" placeholder="password" name="password" id="password">
-            <input type="password" placeholder="password 확인" name="password2" id="password2">
-            <input type="text" name="email" placeholder="E-mail" id="email">
-            <input type="button" value="회원가입" id="registerButton">
+            <div class=form-input">
+                <input type="text" name="uid" placeholder="Username" id="uid">
+            </div>
+            <div class=form-input">
+                <input type="password" placeholder="password" name="password" id="password">
+            </div>
+            <div class=form-input">
+                <input type="password" placeholder="password 확인" name="password2" id="password2">
+            </div>
+            <div class=form-input">
+                <input type="text" name="email" placeholder="E-mail" id="email">
+            </div>
+            <div class=form-input">
+                <input type="number" name="age" id="age" min="1" max="200" placeholder="age">
+            </div>
+            <div class="form-input">
+                <input type="radio" name="gender" value="male" checked="checked">male
+                <input type="radio" name="gender" value="female">female
+            </div>
+
+            <input type="button" value="회원가입" id="registerButton" class="btn-register">
+
             <script type="text/javascript">
                 $(document).ready(function() {
                     $('#registerButton').click(
@@ -24,7 +43,9 @@
                                 uid: $("#uid").val(),
                                 password: $("#password").val(),
                                 password2: $("#password2").val(),
-                                email: $("#email").val()
+                                email: $("#email").val(),
+                                gender: $("input[type=radio][name=gender]:checked").val(),
+                                age: $('#age').val()
                             };
                             $.ajax({
 
@@ -37,7 +58,7 @@
                                         document.cookie = 'token='+json['data']['token'] + ';path=/';
                                         location.replace('http://localhost:3030/');
                                     }else{
-                                        alert('회원가입 실패');
+                                        alert(JSON.stringify(json));
                                     }
                                 }
 

@@ -16,7 +16,7 @@ module.exports = function(req, res, next) {
 
                 req.session = JSON.parse(val);                              // 세션처럼 사용하기 위해
                 res.renderData['uid'] = req.session.uid;
-                console.log('req session uid: ' + req.session.uid);
+                console.log('req session: ' + JSON.stringify(req.session));
                 next();
 
             } else {
