@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container">
-    <form action="http://localhost:3000/" id="writePost" class="writePost">
+    <form action="/posts/card" method="post" id="writePost" class="writePost" enctype="multipart/form-data">
         <input type="text" name="user_ObjectId" style="display: none" />
         <input type="text" name="card_id" value="0" style="display: none"/>
         <div class="titleBox inputBox">
@@ -23,7 +23,9 @@
         <div class="fileBox inputBox">
             <input type="file" name="photo"/>
         </div>
-
+        <div class="commitBox inputBox">
+            <input type="submit" value="전송하기">
+        </div>
     </form>
 </div>
 
