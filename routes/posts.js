@@ -30,11 +30,12 @@ router.use(function(req, res, next){
 router.get('/card', tokenAuth, function(req,res){
 
     console.log('/posting/card get in');
-    var user_ObjectId = req.query.user_ObjectId;
+    var user_ObjectId = req.session['passport']['user'];
     var number = req.query.number;
 
     console.log('user_ObjectId: ', user_ObjectId);
     console.log('number :', number);
+    console.log('req cookie : ' + JSON.stringify(req.cookies));
 
     Post.getCardSequence(user_ObjectId,number,function(err,card){
         if(err){
@@ -83,7 +84,7 @@ router.post('/card', tokenAuth, upload.single('photo'), function(req,res){
         title: req.body.title,
         content: req.body.content,
         user_ObjectId: req.session['passport']['user'],
-        photo_path: pubIp + '/images/uploads/' + req.file.filename,
+        photo_path: 'http://' + pubIp.domain + '/images/uploads/' + req.file.filename,
         tag: req.body.tag.split(' ')
     });
     var check = parseInt(req.body.card_id);
