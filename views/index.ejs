@@ -1,68 +1,56 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
   <head>
     <title><%= title %></title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/basic.css" />
     <link rel="stylesheet" href="/stylesheets/index.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-
     <script src="/javascripts/submitUrlHandler.js"></script>
     <script src="/javascripts/echarts.min.js"></script>
     <script src="/javascripts/echarts-wordcloud.min.js"></script>
     <script src="/javascripts/wordcloud.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
   </head>
   <body>
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    <%- include('header')%>
-    <div class="container">
-      <div class="anc_tagListBox row">
-        <div class="col-md-2 offset-10">
-          <a href="/tagList">더 보기..</a>
-        </div>
-      </div>
+  <%- include('header')%>
 
-      <div class="rankRoom" id="wordcloudBox">
-      </div>
+  <div class="rankRoom" id="wordcloudBox">
+  </div>
+  <script type="text/javascript">
+      var dummyDataBinding = new Vue({
+          data: {
+              posts: [],
+              errors: []
+          },
 
-      <script type="text/javascript">
-          var dummyDataBinding = new Vue({
-              data: {
-                  posts: [],
-                  errors: []
+          // Fetches posts when the component is created.
+          created: function () {
+              axios.get('http://localhost:3030/tags/hotlist')
+                  .then(function(response) {
+                      // JSON responses are automatically parsed.
+                      this.posts = response.data
+                      wordcloud('wordcloudBox',response.data);
+                  }.bind(this))
+                  .catch(function(e) {
+                      this.errors.push(e)
+                  });
+              console.log(this.posts)
+          },
+          computed: {
+              reverse: function() {
+                  return this.posts.reverse();
               },
-              // Fetches posts when the component is created.
-              created: function () {
-                  axios.get('http://localhost:3030/tags/hotlist')
-                      .then(function(response) {
-                          // JSON responses are automatically parsed.
-                          this.posts = response.data
-                          wordcloud('wordcloudBox',response.data);
-                      }.bind(this))
-                      .catch(function(e) {
-                          this.errors.push(e)
-                      });
-                  console.log(this.posts)
-              },
-              computed: {
-                  reverse: function() {
-                      return this.posts.reverse();
-                  },
 
-                  orderedUsers: function () {
-                      return _.orderBy(this.posts, 'first_name')
-                  }
-              },
-              methods: {
+              orderedUsers: function () {
+                  return _.orderBy(this.posts, 'first_name')
               }
-          });
-      </script>
+          },
+          methods: {
+          }
+      });
+  </script>
 
   <div class="anc_tagList">
     <a href="/tagList">태그 더 보기</a>

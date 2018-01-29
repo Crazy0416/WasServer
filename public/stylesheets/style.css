@@ -1,12 +1,5 @@
-* {
-  margin: 0px;
-  padding: 0px;
-  font-family: "배달의민족 주아";
-  color: aliceblue;
-}
-html, body {
-  height: 100%;
-  padding: 0px;
+body {
+  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   font-family: 'Fjalla One', sans-serif;
   background: #EBE9D1;
