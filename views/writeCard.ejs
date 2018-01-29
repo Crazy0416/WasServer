@@ -8,29 +8,32 @@
     <script src="/javascripts/writeCard.js"></script>
 </head>
 <body>
-<!--
+
 <div class="container">
     <form action="/posts/card" method="post" id="writePost" class="writePost" enctype="multipart/form-data">
         <input type="text" name="user_ObjectId" style="display: none" />
         <input type="text" name="card_id" value="0" style="display: none"/>
         <div class="titleBox inputBox">
-            제목 : <input type="text" name="title"/>
+            Title : <input type="text" name="title" />
         </div>
-        <div class="contentBox inputBox">
-            내용 : <input type="text" name="content"/>
+
+        <div textarea class="contentBox inputBox">
+            Content : <textarea rows="4" cols="50" name="content"></textarea>
         </div>
         <div class="tagBox inputBox">
-            태그 : <input type="text" name="tag" placeholder="예) #태그내용 #태그내용"/>
+            Tag : <input type="text" name="tag" placeholder="예) #태그내용 #태그내용"/>
         </div>
         <div class="fileBox inputBox">
-            <input type="file" name="photo"/>
+            <input type="file" name="photo" value="File Upload">
         </div>
         <div class="commitBox inputBox">
-            <input type="submit" value="전송하기">
+            <input type="submit" value="Posting!" class="submit_btn">
         </div>
+
     </form>
 </div>
--->
+
+<!--
 <div class="widget-post" aria-labelledby="post-header-title">
     <div class="widget-post__header">
         <h2 class="widget-post__title" id="post-header-title">
@@ -56,7 +59,7 @@
                         upload image
                     </label>
                 </button>
-                <input type="file" id="upload-image" accept="image/*" multiple><br/>
+                <input type="file" id="upload-image" name="photo" accept="image/*" multiple><br/>
                 <div class="tagBox inputBox">
                     태그 : <input type="text" name="tag" placeholder="예) #태그내용 #태그내용"/>
                 </div>
@@ -65,11 +68,10 @@
             <div class="post-actions__widget">
                 <input type="submit" value="전송하기" class="btn post-actions__publish">
             </div>
-         <!--   <div class="post-actions__widget">
-                <button class="btn post-actions__publish">publish</button>
-            </div>-->
         </div>
     </form>
 </div>
+-->
+
 </body>
 </html>

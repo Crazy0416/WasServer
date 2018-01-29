@@ -74,8 +74,6 @@
 
                         document.getElementById('userPostBox').appendChild(post);
                     })
-
-
                 }.bind(this))
                 .catch(function(e) {
                 });
@@ -85,7 +83,6 @@
             reverse: function() {
                 return this.posts.reverse();
             },
-
             orderedUsers: function () {
                 return _.orderBy(this.posts, 'first_name')
             }
@@ -118,7 +115,7 @@
     </div>
     <script>
         function writePost(){
-            window.open('/users/writeCard', null, "width = 1000, height = 400, location=no, resizable=no")
+            window.open('/users/writeCard', null, "width = 600, height = 600, location=no, resizable=no")
         }
     </script>
     <div class="userPostBox" id="userPostBox">
@@ -143,6 +140,5 @@
 
     </div>
 </div>
-
 </body>
 </html>
