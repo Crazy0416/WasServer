@@ -33,7 +33,7 @@ h2 {
 }
 
 
-input[type="text"], input[type="password"]{
+input[type="text"], input[type="password"], input[type="number"]{
     height:45px;
     width:300px;
     font-size:18px;

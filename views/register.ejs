@@ -14,19 +14,27 @@
         <h2>Register</h2>
         <form name="frm_register" class="registerForm">
             <div class=form-input">
-            <input type="text" name="uid" placeholder="Username" id="uid">
+                <input type="text" name="uid" placeholder="Username" id="uid">
             </div>
             <div class=form-input">
-            <input type="password" placeholder="password" name="password" id="password">
+                <input type="password" placeholder="password" name="password" id="password">
             </div>
             <div class=form-input">
-            <input type="password" placeholder="password 확인" name="password2" id="password2">
+                <input type="password" placeholder="password 확인" name="password2" id="password2">
             </div>
             <div class=form-input">
-            <input type="text" name="email" placeholder="E-mail" id="email">
+                <input type="text" name="email" placeholder="E-mail" id="email">
+            </div>
+            <div class=form-input">
+                <input type="number" name="age" min="1" max="200" placeholder="age">
+            </div>
+            <div class="form-input">
+                <input type="radio" name="gender" id="" value="male" checked="checked">male
+                <input type="radio" name="gender" id="" value="female">female
             </div>
 
             <input type="button" value="회원가입" id="registerButton" class="btn-register">
+
             <script type="text/javascript">
                 $(document).ready(function() {
                     $('#registerButton').click(
