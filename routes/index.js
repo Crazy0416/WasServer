@@ -18,7 +18,7 @@ router.get('/', addSessionObj, function(req, res, next) {
 
 });
 
-router.get('/taglist', function(req, res, next){
+router.get('/taglist', addSessionObj, function(req, res, next){
 
   res.renderData['title'] = 'TagTalk';
 
