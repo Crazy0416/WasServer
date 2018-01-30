@@ -25,7 +25,7 @@
                 .then(function(response) {
                     // JSON responses are automatically parsed.
                     var data = response.data.data;
-                    console.log(data);
+                    console.log('dada check:',data);
                     response.data.data.forEach(function(v, i){
                         //TODO : import to data[]
 
@@ -37,8 +37,10 @@
                         var postItem_image = document.createElement('div');
                         postItem_image.setAttribute('class', 'postItem_image');
                         var img= document.createElement('img');
+
                         img.setAttribute('src', v.photo_path)
                         postItem_image.appendChild(img);
+
 
                         var postItem_text = document.createElement('div');
                         postItem_text.setAttribute('class', 'postItem_text');
@@ -91,6 +93,21 @@
         }
     });
 </script>
+<script>
+    function imgSize(which){
+        var width = eval("document."+which+".width");
+        var height = eval("document."+which+".height");
+        var temp = 0;
+        var max_width= 600;   // 이미지의 최대 크기
+
+        if ( width > max_width ) {  // 이미지가 600보다 크다면 너비를 600으로 맞우고 비율에 맞춰 세로값을 변경한다.
+            height = height/(width / max_width);
+            eval("document."+which+".width = max_width");
+            eval("document."+which+".height = height");
+        }
+    }
+</script>
+
 <div class="container">
     <div class="userInfoBox">
         <div class="userLevelImg">
@@ -121,24 +138,23 @@
     <div class="userPostBox" id="userPostBox">
         <a href="/users/card/test" class="postItem">
             <div class="postItem_image">
-                <img src="/images/post/test/XujRAcX9.jpg" alt="">
+                <img src="/images/post/test/XujRAcX9.jpg" style="max-width: 100%; height: auto;">
             </div>
-            <div class="postItem_text">
-                <div class="postItem_textTitle">
-                    <h3 class="postTitle">타이틀 테스트</h3>
-                </div>
-                <div class="postItem_textContent">
-                    <div class="postLine">내용전달 내용전달 내용전달...</div>
-                    <div class="postLine">내용전달 내용전달 내용전달...</div>
-                    <div class="postLine">내용전달 내용전달 내용전달...</div>
-                    <div class="postLine">내용전달 내용전달 내용전달...</div>
-                    <div class="postLine">내용전달 내용전달 내용전달...</div>
-                    <div class="postLine">내용전달 내용전달 내용전달...</div>
-                </div>
-            </div>
+            <!--<div class="postItem_text">-->
+                <!--<div class="postItem_textTitle">-->
+                    <!--<h3 class="postTitle">타이틀 테스트</h3>-->
+                <!--</div>-->
+                <!--<div class="postItem_textContent">-->
+                    <!--<div class="postLine">내용전달 내용전달 내용전달...</div>-->
+                    <!--<div class="postLine">내용전달 내용전달 내용전달...</div>-->
+                    <!--<div class="postLine">내용전달 내용전달 내용전달...</div>-->
+                    <!--<div class="postLine">내용전달 내용전달 내용전달...</div>-->
+                <!--</div>-->
+            <!--</div>-->
         </a>
 
     </div>
 </div>
 </body>
+
 </html>
