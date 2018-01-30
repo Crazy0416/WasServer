@@ -5,11 +5,40 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/myPage.css" />
     <script src="/javascripts/createPostObjToHtml.js"></script>
+    <script src="/javascripts/getCookie.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
 </head>
 <body>
+<script>
+    $(window).scroll(function() {
+        if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
+            // TODO : 무한스크롤 이벤트
+            var CardCnt = getCookie('CardCnt');
+            axios.get('http://localhost:3030/posts/card?number=' + (parseInt(CardCnt)+1), {
+                withCredentials: true
+            })
+            .then(function(response) {
+                // JSON responses are automatically parsed.
+                var data = response.data.data;
+                console.log(data);
+                response.data.data.forEach(function(v, i){
+                    //TODO : import to data[]
+
+                })
+                response.data.data.forEach(function(v, i){
+                    var post = createPostObjToHtml(v);
+                    document.getElementById('userPostBox').appendChild(post);
+                    if(i === (response.data.data.length -1)){
+                        console.log((parseInt(CardCnt) + response.data.data.length))
+                        document.cookie = 'CardCnt='+ (parseInt(CardCnt) + response.data.data.length) + ';path=/';
+                    }
+                })
+            })
+        }
+    });
+</script>
 <%- include('header')%>
 <script type="text/javascript">
     var dummyDataBinding = new Vue({
@@ -33,7 +62,12 @@
                     })
                     response.data.data.forEach(function(v, i){
                         var post = createPostObjToHtml(v);
+                        console.log(v);
                         document.getElementById('userPostBox').appendChild(post);
+                        if(i === (response.data.data.length -1)){
+                            console.log(response.data.data.length);
+                            document.cookie = 'CardCnt='+ (response.data.data.length) + ';path=/';
+                        }
                     })
                 }.bind(this))
                 .catch(function(e) {

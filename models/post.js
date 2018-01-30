@@ -63,7 +63,7 @@ module.exports.getCardSequence = function(user_ObjectId, number, callback) {
     var newNumber = parseInt(number);
     console.log('newNumber : ',newNumber);
 
-    Post.find(query,{},{sort:{card_id:-1},limit:15,skip:newNumber}, callback);
+    Post.find(query,{},{sort:{card_id:-1},limit:5,skip:newNumber}, callback);
     /*
     Post.find(query,{},{sort:{card_id:-1},limit:5,skip:number}, function(err,callback){
         if(err){
