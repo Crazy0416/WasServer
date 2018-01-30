@@ -8,6 +8,8 @@ mongoose.connect('mongodb://localhost/loginapp');
 var redis = require('redis');
 var redisClient = redis.createClient(6379, "127.0.0.1");        // url 설정해서 db 공간을 바꿀 수 있음
 
+var Post = require('../models/post');    //post schema 얻어오기 위함
+
 router.use(function(req, res, next){
 
     res.renderData = {};          // render 할 때 보낼 객체
@@ -72,12 +74,29 @@ router.get('/mypage/:uid', uidParamAuth, function(req, res, next){
 });
 
 router.get('/card/:card_id', function(req, res, next){
+    var card_id = req.params['card_id'];
 
-    // TODO: 몽고 디비에서 데이터 추출해야함
+    Post.getCardById(card_id, function(err, card){
+        if(err){
 
-    res.renderData['title'] = "테스트 맨!";
+            res.render({
+                message: "DB ERROR",
+                error: {
+                    status: 500,
+                    stack: "..."
+                }
+            })
 
-    res.render('post', res.renderData);
+        }else {
+            res.renderData['title'] = card.title;
+            res.renderData['title'] = card.title;
+            res.renderData['postImageUrl'] = card.photo_path;
+            res.renderData['postContent'] = card.content;
+            res.renderData['postTag'] = card.tag;
+
+            res.render('post', res.renderData);
+        }
+    });
 
 });
 

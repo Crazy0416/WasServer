@@ -38,6 +38,7 @@ router.get('/card', tokenAuth, function(req,res){
     console.log('req cookie : ' + JSON.stringify(req.cookies));
 
     Post.getCardSequence(user_ObjectId,number,function(err,card){
+        console.log('here!!!');
         if(err){
             console.log('GET /posts/card getCardSequence ERROR: ' + err);
             res.json({

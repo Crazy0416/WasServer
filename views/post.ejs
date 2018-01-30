@@ -3,9 +3,26 @@
 <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
 </head>
 <body>
-    포스트 페이지입니다.
+    <div class="container">
+        <div class="postTitle">
+            <%= title%>
+        </div>
+        <div class="postImage">
+            <img src="<%=postImageUrl%>" alt="">
+        </div>
+        <div class="postContent">
+            <%= postContent%>
+        </div>
+        <div class="postTag" >
+            <% for(var i = 0; i < postTag.length; i++) { %>
+            <a href="/chatrooms/<%=postTag[i].substr(1)%>"><%=postTag[i]%></a>
+            <% } %>
+        </div>
+    </div>
 </body>
 </html>

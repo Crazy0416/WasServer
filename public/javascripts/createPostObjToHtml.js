@@ -2,7 +2,8 @@ function createPostObjToHtml(objData){
 
     var post = document.createElement('a');
     post.setAttribute('class', "postItem");
-    post.setAttribute('href', '/users/card/'+'test');      // TODO: uid 넣어야함
+    console.log(objData.ObjectId);
+    post.setAttribute('href', '/users/card/'+ objData.ObjectId);      // TODO: uid 넣어야함
     var postItem_image = document.createElement('div');
     postItem_image.setAttribute('class', 'postItem_image');
     var img= document.createElement('img');

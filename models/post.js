@@ -57,7 +57,7 @@ module.exports.deleteCardByCardId = function(card_id, callback){
 // db.posts.find({"user_ObjectId":"5a66d1dd4a116d25902ad2e8"}).sort({"card_id":-1}) 내림차순 정렬해서 전체 뽑기
 
 module.exports.getCardSequence = function(user_ObjectId, number, callback) {
-    console.log('getCardSequenct function in');
+    console.log('getCardSequence function in');
 
     var query = {user_ObjectId: user_ObjectId};
     var newNumber = parseInt(number);
