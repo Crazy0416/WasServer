@@ -52,6 +52,7 @@ router.get('/card', tokenAuth, function(req,res){
 
             for(var i=0; i<card.length; i++){
                 cardArr.push({
+                    ObjectId: card[i]._id,
                     user_ObjectId:card[i].user_ObjectId,
                     card_id:card[i].card_id,
                     title:card[i].title,
