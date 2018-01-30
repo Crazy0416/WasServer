@@ -4,6 +4,7 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/myPage.css" />
+    <script src="/javascripts/createPostObjToHtml.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
@@ -30,48 +31,8 @@
                         //TODO : import to data[]
 
                     })
-                    response.data.data.reverse().forEach(function(v, i){
-                        var post = document.createElement('a');
-                        post.setAttribute('class', "postItem");
-                        post.setAttribute('href', '/users/card/'+'test');      // TODO: uid 넣어야함
-                        var postItem_image = document.createElement('div');
-                        postItem_image.setAttribute('class', 'postItem_image');
-                        var img= document.createElement('img');
-                        img.setAttribute('src', v.photo_path)
-                        postItem_image.appendChild(img);
-
-                        var postItem_text = document.createElement('div');
-                        postItem_text.setAttribute('class', 'postItem_text');
-
-                        var postItem_textTitle = document.createElement('div');
-                        postItem_textTitle.setAttribute('class', 'postItem_textTitle');
-                        var postTitle = document.createElement('h3');
-                        postTitle.setAttribute('class', 'postTitle');
-                        var textTitle = document.createTextNode(v.title);
-                        postTitle.appendChild(textTitle);
-
-                        postItem_textTitle.appendChild(postTitle);
-                        postItem_text.appendChild(postItem_textTitle);
-
-                        var postItem_textContent = document.createElement('div');
-                        postItem_textContent.setAttribute('class', 'postItem_textContent');
-                        var postLine1 = document.createElement('div');
-                        var postLine2 = document.createElement('div');
-                        postLine1.setAttribute('class', 'postLine');
-                        postLine2.setAttribute('class', 'postLine');
-                        var textContent1 = document.createTextNode(v.content.substr(0, 10));
-                        var textContent2 = document.createTextNode(v.content.substr(10, 8) + '...');
-                        postLine1.appendChild(textContent1);
-                        postLine2.appendChild(textContent2);
-
-                        postItem_textContent.appendChild(postLine1);
-                        postItem_textContent.appendChild(postLine2);
-
-                        postItem_text.appendChild(postItem_textContent);
-
-                        post.appendChild(postItem_image);
-                        post.appendChild(postItem_text);
-
+                    response.data.data.forEach(function(v, i){
+                        var post = createPostObjToHtml(v);
                         document.getElementById('userPostBox').appendChild(post);
                     })
                 }.bind(this))
@@ -119,7 +80,7 @@
         }
     </script>
     <div class="userPostBox" id="userPostBox">
-        <a href="/users/card/test" class="postItem">
+        <!---<a href="/users/card/test" class="postItem">
             <div class="postItem_image">
                 <img src="/images/post/test/XujRAcX9.jpg" alt="">
             </div>
@@ -132,7 +93,7 @@
                     <div class="postLine">내용전달 내용전달 내용전달...</div>
                 </div>
             </div>
-        </a>
+        </a>--->
 
     </div>
 </div>

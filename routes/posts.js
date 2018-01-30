@@ -39,14 +39,15 @@ router.get('/card', tokenAuth, function(req,res){
 
     Post.getCardSequence(user_ObjectId,number,function(err,card){
         if(err){
-            console.log('getCardSequence error');
+            console.log('GET /posts/card getCardSequence ERROR: ' + err);
             res.json({
                     success:false,
                     message:'DB getCardSequence error'
                 });
             throw err;
         }else {
-            console.log('!!!!!getCardSequenct in');
+            console.log('GET /posts/card getCardSequence card Array : ' + JSON.stringify(card));
+            console.log('GET /posts/card getCardSequence card Array length: ' + card.length);
             var cardArr=[];
 
             for(var i=0; i<card.length; i++){
