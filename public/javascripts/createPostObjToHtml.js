@@ -1,9 +1,13 @@
+function loadPostPage(href){
+    window.open(href, null, "width = 600, height = 600, location=no, resizable=no")
+}
+
 function createPostObjToHtml(objData){
 
     var post = document.createElement('a');
     post.setAttribute('class', "postItem");
-    console.log(objData.ObjectId);
-    post.setAttribute('href', '/users/card/'+ objData.ObjectId);      // TODO: uid 넣어야함
+    post.setAttribute('onclick', 'loadPostPage(\'/users/card/'+objData.ObjectId+'\')');
+    //post.setAttribute('href', '/users/card/'+ objData.ObjectId);      // TODO: uid 넣어야함
     var postItem_image = document.createElement('div');
     postItem_image.setAttribute('class', 'postItem_image');
     var img= document.createElement('img');
