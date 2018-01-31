@@ -81,15 +81,21 @@ router.post('/card', tokenAuth, upload.single('photo'), function(req,res){
     console.log('/posting/card in');
     console.log("req.file: " + JSON.stringify(req.file));
     console.log("body: " + JSON.stringify(req.body));
-    console.log('file name : ' + req.file.destination);
 
     var newCard = new Post({
         title: req.body.title,
         content: req.body.content,
         user_ObjectId: req.session['passport']['user'],
-        photo_path: 'http://' + pubIp.domain + '/images/uploads/' + req.file.filename,
+
         tag: req.body.tag.split(' ')
     });
+
+    if(req.file){
+        newCard.photo_path = 'http://' + pubIp.domain + '/images/uploads/' + req.file.filename;
+    }else{
+        newCard.photo_path = 'http://' + pubIp.domain + '/images/noimage.jpg';
+    }
+
     var check = parseInt(req.body.card_id);
     console.log('POST /posts/card mode check = ', check);
 

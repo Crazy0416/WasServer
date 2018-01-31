@@ -21,25 +21,25 @@ router.get('/hotlist', function(req, res, next){
         name: 'Hello, there!',
         value: 23
     },{
-        name: '님아 한글 가능??',
+        name: '한글 입력 테스트',
         value: 44
     },{
-        name: '완전 가능',
+        name: '워드클라우드',
         value: 54
     },{
-        name: '요호 개꿀띠',
+        name: '테스트 문자열',
         value: 60
     },{
-        name: '특수 문자 가능??',
+        name: '태그 문자',
         value: 36
     },{
-        name: '앙 기모띠@@@@@@!@#!@#',
+        name: '채팅방',
         value: 20
     },{
-        name: '헐 쩔었다',
+        name: '한글 입력 가능',
         value: 20
     },{
-        name: 'watch me',
+        name: 'English Okay',
         value: 12
     }];
 
