@@ -56,7 +56,10 @@ router.get('/hotlist', function(req, res, next){
     }];
 
 
-    res.json(hotList);
+    res.append("Access-Control-Allow-Origin", "*")
+        .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+        .set()
+        .json(hotList);
 });
 
 module.exports = router;
