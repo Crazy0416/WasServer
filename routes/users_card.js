@@ -73,14 +73,17 @@ router.get('/', tokenAuth, function(req,res){
         console.log('here!!!');
         if(err){
             console.log('GET /posts/card getCardSequence ERROR: ' + err);
-            res.json({
+            res.append("Access-Control-Allow-Origin", "*")
+                .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+                .set()
+                .json({
                     success:false,
                     message:'DB getCardSequence error'
                 });
             throw err;
         }else {
-            console.log('GET /posts/card getCardSequence card Array : ' + JSON.stringify(card));
-            console.log('GET /posts/card getCardSequence card Array length: ' + card.length);
+            console.log('GET /users/card getCardSequence card Array : ' + JSON.stringify(card));
+            console.log('GET /users/card getCardSequence card Array length: ' + card.length);
             var cardArr=[];
 
             for(var i=0; i<card.length; i++){
@@ -96,11 +99,11 @@ router.get('/', tokenAuth, function(req,res){
                 })
             }
             // console.log(cardArr);
+            console.log('card return end');
             res.json({
                     success: true,
                     data: cardArr
                 });
-            console.log('card return end');
         }
     })
 });
@@ -134,7 +137,10 @@ router.post('/', tokenAuth, upload.single('photo'), function(req,res){
     if(check == 0){   //create and save
         Post.createCard(newCard, function(err,card){
             if(err){
-                res.json({
+                res.append("Access-Control-Allow-Origin", "*")
+                    .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+                    .set()
+                    .json({
                         success:false,
                         message:'DB createCard error'
                     });
@@ -145,7 +151,10 @@ router.post('/', tokenAuth, upload.single('photo'), function(req,res){
                 console.log('card_ObjectId : ',card_ObjectId);
                 console.log('new card save success');
 
-                res.json({
+                res.append("Access-Control-Allow-Origin", "*")
+                    .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+                    .set()
+                    .json({
                         success:true,
                         data:{
                             card_id:card.card_id
@@ -157,7 +166,10 @@ router.post('/', tokenAuth, upload.single('photo'), function(req,res){
 
         Post.modifyCard(newCard,check,function(err,card){
             if(err){
-                res.json({
+                res.append("Access-Control-Allow-Origin", "*")
+                    .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+                    .set()
+                    .json({
                         success:false,
                         message:'DB modifyCard error'
                     });
@@ -167,7 +179,10 @@ router.post('/', tokenAuth, upload.single('photo'), function(req,res){
 
                 console.log('card modify success');
 
-                res.json({
+                res.append("Access-Control-Allow-Origin", "*")
+                    .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+                    .set()
+                    .json({
                         success:true,
                         data:{
                             card_id:check
@@ -188,14 +203,20 @@ router.delete('/', function(req,res){
     Post.getCardByCardId(card_id, function(err,card){
 
         if(err){
-            res.json({
+            res.append("Access-Control-Allow-Origin", "*")
+                .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+                .set()
+                .json({
                     success:false,
                     message:'DB getCardByCardId error'
                 });
             throw err;
         }else {
             if (!card) {
-                res.json({
+                res.append("Access-Control-Allow-Origin", "*")
+                    .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+                    .set()
+                    .json({
                         success: false,
                         message: 'DB there is no card'
                     });
@@ -203,13 +224,19 @@ router.delete('/', function(req,res){
 
                 Post.deleteCardByCardId(card_id,function(err,card){
                     if(err){
-                        res.json({
+                        res.append("Access-Control-Allow-Origin", "*")
+                            .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+                            .set()
+                            .json({
                                 success:false,
                                 message:'DB deleteCardByCardId error'
                             });
                         throw err;
                     }else{
-                        res.json({
+                        res.append("Access-Control-Allow-Origin", "*")
+                            .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+                            .set()
+                            .json({
                                 success:true,
                                 message:card_id
                             });
