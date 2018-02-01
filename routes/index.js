@@ -8,9 +8,10 @@ router.use(function(req, res, next){
   next();
 
 });
+router.use(addSessionObj);
 
-/* GET home page. */
-router.get('/', addSessionObj, function(req, res, next) {
+/* GET index page. */
+router.get('/', function(req, res, next) {
 
   res.renderData['title'] = 'TagTalk';
 
@@ -18,12 +19,5 @@ router.get('/', addSessionObj, function(req, res, next) {
 
 });
 
-router.get('/taglist', addSessionObj, function(req, res, next){
-
-  res.renderData['title'] = 'TagTalk';
-
-  res.render('tagList', res.renderData);
-
-});
 
 module.exports = router;

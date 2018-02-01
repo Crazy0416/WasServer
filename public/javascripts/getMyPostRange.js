@@ -1,5 +1,5 @@
 function getMyPostRange(skip){
-    axios.get('http://localhost:3030/posts/card?number=' + (parseInt(skip)), {
+    axios.get('http://localhost:3030/users/card?number=' + (parseInt(skip)), {
         withCredentials: true
     })
     .then(function(response) {

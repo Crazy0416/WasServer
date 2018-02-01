@@ -14,20 +14,52 @@ var mult_storage = multer.diskStorage({
 
 // middleware function
 var tokenAuth = require('../middlewares/tokenAuth');
+var addSessionObj = require('../middlewares/addSessionObj');
 var upload= multer({
     storage: mult_storage
 });
+
+
 
 // models
 var User = require('../models/user');   //user schema 얻어오기 위함
 var Post = require('../models/post');    //post schema 얻어오기 위함
 
 router.use(function(req, res, next){
-    res.renderData = {};          // render 할 때 보낼 객체
+    res.renderData = {};          //
+    // 할 때 보낼 객체
     next();
 });
 
-router.get('/card', tokenAuth, function(req,res){
+/* GET card page.*/
+router.get('/:card_id', addSessionObj,function(req, res, next){
+    var card_id = req.params['card_id'];
+
+    Post.getCardById(card_id, function(err, card){
+        if(err){
+
+            res.render({
+                message: "DB ERROR",
+                error: {
+                    status: 500,
+                    stack: "..."
+                }
+            })
+
+        }else {
+            res.renderData['title'] = card.title;
+            res.renderData['title'] = card.title;
+            res.renderData['postImageUrl'] = card.photo_path;
+            res.renderData['postContent'] = card.content;
+            res.renderData['postTag'] = card.tag;
+
+            res.render('card', res.renderData);
+        }
+    });
+
+});
+
+router.get('/', tokenAuth, function(req,res){
 
     console.log('/posting/card get in');
     var user_ObjectId = req.session['passport']['user'];
@@ -76,7 +108,7 @@ router.get('/card', tokenAuth, function(req,res){
 /*
     card 저장/갱신
 */
-router.post('/card', tokenAuth, upload.single('photo'), function(req,res){
+router.post('/', tokenAuth, upload.single('photo'), function(req,res){
 
     console.log('/posting/card in');
     console.log("req.file: " + JSON.stringify(req.file));
@@ -149,7 +181,7 @@ router.post('/card', tokenAuth, upload.single('photo'), function(req,res){
 /*
     card 삭제
 */
-router.delete('/card', function(req,res){
+router.delete('/', function(req,res){
     //var user_ObjectId = req.body.user_ObjectId;
     var card_id = req.body.card_id;
 

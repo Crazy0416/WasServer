@@ -13,10 +13,9 @@ router.use(addSessionObj);
 
 
 /*
-* GET /chatroom/:tag/:id?
-* Render chatroom page
+* GET chatroom page
  */
-router.get('/:tag', function(req, res, next){
+router.get('/tag/:tag', function(req, res, next){
     var tag = req.params.tag;
     res.renderData['title'] = tag+"방";
 
@@ -62,6 +61,6 @@ router.get('/:tag', function(req, res, next){
     // TODO: 채팅 채널에 인원수 증가
 
 
-})
+});
 
 module.exports = router;
