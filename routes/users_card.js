@@ -129,9 +129,9 @@ router.post('/', tokenAuth, upload.single('photo'), function(req,res){
     });
     // TODO : 이미지 레플리케이션 설정
     if(req.file){
-        newCard.photo_path = 'http://' + pubIp.domain + '/images/uploads/' + req.file.filename;
+        newCard.photo_path = '/images/uploads/' + req.file.filename;
     }else{
-        newCard.photo_path = 'http://' + pubIp.domain + '/images/noimage.jpg';
+        newCard.photo_path = '/images/noimage.jpg';
     }
 
     var check = parseInt(req.body.card_id);
