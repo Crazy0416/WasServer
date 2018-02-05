@@ -48,7 +48,6 @@ router.get('/:card_id', addSessionObj,function(req, res, next){
 
         }else {
             res.renderData['title'] = card.title;
-            res.renderData['title'] = card.title;
             res.renderData['postImageUrl'] = card.photo_path;
             res.renderData['postContent'] = card.content;
             res.renderData['postTag'] = card.tag;
@@ -73,7 +72,7 @@ router.get('/', tokenAuth, function(req,res){
         console.log('here!!!');
         if(err){
             console.log('GET /posts/card getCardSequence ERROR: ' + err);
-            res.append("Access-Control-Allow-Origin", "*")
+            res.append("Access-Control-Allow-Origin", "http://" + pubIp.domain)
                 .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
                 .set()
                 .json({
@@ -100,7 +99,11 @@ router.get('/', tokenAuth, function(req,res){
             }
             // console.log(cardArr);
             console.log('card return end');
-            res.json({
+            res.append("Access-Control-Allow-Origin", "http://" + pubIp.domain)
+                .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+                .append("Access-Control-Allow-Credentials", true)
+                .set()
+                .json({
                     success: true,
                     data: cardArr
                 });
@@ -124,7 +127,7 @@ router.post('/', tokenAuth, upload.single('photo'), function(req,res){
 
         tag: req.body.tag.split(' ')
     });
-
+    // TODO : 이미지 레플리케이션 설정
     if(req.file){
         newCard.photo_path = 'http://' + pubIp.domain + '/images/uploads/' + req.file.filename;
     }else{
@@ -137,7 +140,7 @@ router.post('/', tokenAuth, upload.single('photo'), function(req,res){
     if(check == 0){   //create and save
         Post.createCard(newCard, function(err,card){
             if(err){
-                res.append("Access-Control-Allow-Origin", "*")
+                res.append("Access-Control-Allow-Origin", "http://" + pubIp.domain)
                     .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
                     .set()
                     .json({
@@ -151,7 +154,7 @@ router.post('/', tokenAuth, upload.single('photo'), function(req,res){
                 console.log('card_ObjectId : ',card_ObjectId);
                 console.log('new card save success');
 
-                res.append("Access-Control-Allow-Origin", "*")
+                res.append("Access-Control-Allow-Origin", "http://" + pubIp.domain)
                     .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
                     .set()
                     .json({
@@ -166,7 +169,7 @@ router.post('/', tokenAuth, upload.single('photo'), function(req,res){
 
         Post.modifyCard(newCard,check,function(err,card){
             if(err){
-                res.append("Access-Control-Allow-Origin", "*")
+                res.append("Access-Control-Allow-Origin", "http://" + pubIp.domain)
                     .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
                     .set()
                     .json({
@@ -179,7 +182,7 @@ router.post('/', tokenAuth, upload.single('photo'), function(req,res){
 
                 console.log('card modify success');
 
-                res.append("Access-Control-Allow-Origin", "*")
+                res.append("Access-Control-Allow-Origin", "http://" + pubIp.domain)
                     .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
                     .set()
                     .json({
@@ -203,7 +206,7 @@ router.delete('/', function(req,res){
     Post.getCardByCardId(card_id, function(err,card){
 
         if(err){
-            res.append("Access-Control-Allow-Origin", "*")
+            res.append("Access-Control-Allow-Origin", "http://" + pubIp.domain)
                 .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
                 .set()
                 .json({
@@ -213,7 +216,7 @@ router.delete('/', function(req,res){
             throw err;
         }else {
             if (!card) {
-                res.append("Access-Control-Allow-Origin", "*")
+                res.append("Access-Control-Allow-Origin", "http://" + pubIp.domain)
                     .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
                     .set()
                     .json({
@@ -224,7 +227,7 @@ router.delete('/', function(req,res){
 
                 Post.deleteCardByCardId(card_id,function(err,card){
                     if(err){
-                        res.append("Access-Control-Allow-Origin", "*")
+                        res.append("Access-Control-Allow-Origin", "http://" + pubIp.domain)
                             .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
                             .set()
                             .json({
@@ -233,7 +236,7 @@ router.delete('/', function(req,res){
                             });
                         throw err;
                     }else{
-                        res.append("Access-Control-Allow-Origin", "*")
+                        res.append("Access-Control-Allow-Origin", "http://" + pubIp.domain)
                             .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
                             .set()
                             .json({

@@ -45,7 +45,7 @@
                                         if(json['success'] === true){
                                             alert('로그인 완료!!');
                                             document.cookie = 'token='+json['data']['token'] + ';path=/';
-                                            location.replace('http://localhost:3030/');
+                                            location.replace('http://localhost/');
                                         }else{
                                             alert('로그인 실패');
                                         }
