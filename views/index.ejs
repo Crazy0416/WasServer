@@ -27,7 +27,7 @@
 
           // Fetches posts when the component is created.
           created: function () {
-              axios.get('http://localhost:3030/popTag/hotlist')
+              axios.get('/popTag/hotlist')
                   .then(function(response) {
                       // JSON responses are automatically parsed.
                       this.posts = response.data
