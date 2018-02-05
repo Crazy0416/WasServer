@@ -50,7 +50,7 @@
                             $.ajax({
 
                                 'type' : 'POST',
-                                'url' : 'http://localhost:3000/auth/register',
+                                'url' : '/auth/register',
                                 'data' : _data,
                                 'success' : function(json){
                                     if(json['success'] === true){
