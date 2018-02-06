@@ -3,27 +3,28 @@
 .container{
     height: 80%;
     width: auto;
-    border: 2px black solid;
+    border: 2px solid #533d4a;
     padding: 1rem;
     margin: 1rem;
+    background-color: #f1c83c;
 }
 
 .postContainer{
     width: 70%;
     height: 100%;
-    border: 1px black solid;
+    border: 2px solid #533d4a;
     float:left;
     margin-right: 0.5rem;
 }
 .chatContainer{
     width: 28%;
     height: 100%;
-    border: 1px black solid;
+    border: 2px solid #533d4a;
     float:left;
     position: relative;
 }
 .chatView{
-    border: 1px black solid;
+    border: 2px solid #533d4a;
     height: 93%;
     margin: 1px;
     padding: 0.5rem;
