@@ -50,13 +50,13 @@
                             $.ajax({
 
                                 'type' : 'POST',
-                                'url' : 'http://localhost:3000/auth/register',
+                                'url' : '/auth/register',
                                 'data' : _data,
                                 'success' : function(json){
                                     if(json['success'] === true){
                                         alert('회원가입 완료!!');
                                         document.cookie = 'token='+json['data']['token'] + ';path=/';
-                                        location.replace('http://localhost/');
+                                        location.replace('/');
                                     }else{
                                         alert(JSON.stringify(json));
                                     }

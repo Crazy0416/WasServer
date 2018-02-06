@@ -4,12 +4,13 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/writeCard.css" />
+    <script src="/javascripts/submitUrlHandler.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
 </head>
 <body>
 
 <div class="container">
-    <form action="/users/card" method="post" id="writePost" class="writePost" enctype="multipart/form-data">
+    <form action="/users/card" onsubmit="editCardPost()" class="writePost" id="frm_editPost" enctype="multipart/form-data">
         <input type="text" name="user_ObjectId" style="display: none" />
         <input type="text" name="card_id" value="0" style="display: none"/>
         <div class="titleBox inputBox">
@@ -28,6 +29,13 @@
         <div class="commitBox inputBox">
             <input type="submit" value="Posting!" class="submit_btn">
         </div>
+        <script type="text/javascript">
+            function editCardPost(){
+                submitUrlHandler("frm_editPost", "post", "/users/card", function(){
+                    alert("등록 성공!!!");
+                });
+            }
+        </script>
 
     </form>
 </div>

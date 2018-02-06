@@ -39,13 +39,13 @@
                                 $.ajax({
 
                                     'type' : 'POST',
-                                    'url' : 'http://localhost:3000/auth/local',
+                                    'url' : '/auth/local',
                                     'data' : _data,
                                     'success' : function(json){
                                         if(json['success'] === true){
                                             alert('로그인 완료!!');
                                             document.cookie = 'token='+json['data']['token'] + ';path=/';
-                                            location.replace('http://localhost/');
+                                            location.replace('/');
                                         }else{
                                             alert('로그인 실패');
                                         }

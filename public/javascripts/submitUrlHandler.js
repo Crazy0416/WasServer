@@ -1,6 +1,6 @@
-function submitUrlHandler(formId, _method, url) {
-    var theForm = document[formId];
+function submitUrlHandler(formId, _method, url, callback) {
+    var theForm = document.getElementById(formId);
     theForm.method = _method;
     theForm.action = url;
-    theForm.submit();
+    $('#'+formId).submit(callback);
 }

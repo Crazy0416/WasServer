@@ -27,7 +27,7 @@
 
           // Fetches posts when the component is created.
           created: function () {
-              axios.get('http://localhost:3030/popTag/hotlist')
+              axios.get('/popTag/hotlist')
                   .then(function(response) {
                       // JSON responses are automatically parsed.
                       this.posts = response.data
@@ -57,7 +57,7 @@
   </div>
 
   <div class="tagUrl">
-    <form class="tagUrl" name="frm_tagUrl">
+    <form class="tagUrl" id="frm_tagUrl">
       <input type="text" id="tagUrl" class="input_tagUrl" placeholder="    입장할 태그를 입력하세요">
       <input type="submit" class="btn_url" value="이동" onclick="getChatRoom()">
     </form>
@@ -65,7 +65,7 @@
   <script language="javascript">
     function getChatRoom(){
         var url = $('#tagUrl').val();
-        submitUrlHandler("frm_tagUrl", "get", "chatrooms/tag/"+url);
+        submitUrlHandler("frm_tagUrl", "get", "chatrooms/tag/"+url, null);
     }
   </script>
   </body>
