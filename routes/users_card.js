@@ -136,7 +136,8 @@ router.post('/', tokenAuth, upload.single('photo'), function(req,res){
 
     var check = parseInt(req.body.card_id);
     console.log('POST /posts/card mode check = ', check);
-
+    console.log('newCard: ' + newCard);
+    console.log('newCard JSON: ' + JSON.stringify(newCard));
     if(check == 0){   //create and save
         Post.createCard(newCard, function(err,card){
             if(err){
