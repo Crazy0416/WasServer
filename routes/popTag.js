@@ -19,6 +19,9 @@ router.get('/', function(req, res, next){
 
 });
 
+
+
+
 /*
 * GET hotList array
  */
