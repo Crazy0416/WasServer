@@ -113,87 +113,87 @@ router.get('/', tokenAuth, function(req,res){
 /*
     card 저장/갱신
 */
-router.post('/', tokenAuth, upload.single('photo'), function(req,res){
-
-    console.log('/posting/card in');
-    console.log("req.file: " + JSON.stringify(req.file));
-    console.log("body: " + JSON.stringify(req.body));
-
-    var newCard = new Post({
-        title: req.body.title,
-        content: req.body.content,
-        user_ObjectId: req.session['passport']['user'],
-
-        tag: req.body.tag.split(' ')
-    });
-    // TODO : 이미지 레플리케이션 설정
-    if(req.file){
-        newCard.photo_path = '/images/uploads/' + req.file.filename;
-    }else{
-        newCard.photo_path = '/images/noimage.jpg';
-    }
-
-    var check = parseInt(req.body.card_id);
-    console.log('POST /posts/card mode check = ', check);
-
-    if(check == 0){   //create and save
-        Post.createCard(newCard, function(err,card){
-            if(err){
-                res.append("Access-Control-Allow-Origin", "*")
-                    .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
-                    .set()
-                    .json({
-                        success:false,
-                        message:'DB createCard error'
-                    });
-                throw err;
-            }else{
-                console.log('create card : ',card);
-                var card_ObjectId = card._id.toString();
-                console.log('card_ObjectId : ',card_ObjectId);
-                console.log('new card save success');
-
-                res.append("Access-Control-Allow-Origin", "*")
-                    .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
-                    .set()
-                    .json({
-                        success:true,
-                        data:{
-                            card_id:card.card_id
-                        }
-                    });
-            }
-        });
-    }else if(check != 0){ //modify
-
-        Post.modifyCard(newCard,check,function(err,card){
-            if(err){
-                res.append("Access-Control-Allow-Origin", "*")
-                    .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
-                    .set()
-                    .json({
-                        success:false,
-                        message:'DB modifyCard error'
-                    });
-                throw err;
-            }else{
-                console.log('modified card : ',card);
-
-                console.log('card modify success');
-
-                res.append("Access-Control-Allow-Origin", "*")
-                    .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
-                    .set()
-                    .json({
-                        success:true,
-                        data:{
-                            card_id:check
-                        }
-                    });
-            }
-        });
-    }
-});
+// router.post('/', tokenAuth, upload.single('photo'), function(req,res){
+//
+//     console.log('/posting/card in');
+//     console.log("req.file: " + JSON.stringify(req.file));
+//     console.log("body: " + JSON.stringify(req.body));
+//
+//     var newCard = new Post({
+//         title: req.body.title,
+//         content: req.body.content,
+//         user_ObjectId: req.session['passport']['user'],
+//
+//         tag: req.body.tag.split(' ')
+//     });
+//     // TODO : 이미지 레플리케이션 설정
+//     if(req.file){
+//         newCard.photo_path = '/images/uploads/' + req.file.filename;
+//     }else{
+//         newCard.photo_path = '/images/noimage.jpg';
+//     }
+//
+//     var check = parseInt(req.body.card_id);
+//     console.log('POST /posts/card mode check = ', check);
+//
+//     if(check == 0){   //create and save
+//         Post.createCard(newCard, function(err,card){
+//             if(err){
+//                 res.append("Access-Control-Allow-Origin", "*")
+//                     .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+//                     .set()
+//                     .json({
+//                         success:false,
+//                         message:'DB createCard error'
+//                     });
+//                 throw err;
+//             }else{
+//                 console.log('create card : ',card);
+//                 var card_ObjectId = card._id.toString();
+//                 console.log('card_ObjectId : ',card_ObjectId);
+//                 console.log('new card save success');
+//
+//                 res.append("Access-Control-Allow-Origin", "*")
+//                     .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+//                     .set()
+//                     .json({
+//                         success:true,
+//                         data:{
+//                             card_id:card.card_id
+//                         }
+//                     });
+//             }
+//         });
+//     }else if(check != 0){ //modify
+//
+//         Post.modifyCard(newCard,check,function(err,card){
+//             if(err){
+//                 res.append("Access-Control-Allow-Origin", "*")
+//                     .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+//                     .set()
+//                     .json({
+//                         success:false,
+//                         message:'DB modifyCard error'
+//                     });
+//                 throw err;
+//             }else{
+//                 console.log('modified card : ',card);
+//
+//                 console.log('card modify success');
+//
+//                 res.append("Access-Control-Allow-Origin", "*")
+//                     .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+//                     .set()
+//                     .json({
+//                         success:true,
+//                         data:{
+//                             card_id:check
+//                         }
+//                     });
+//             }
+//         });
+//     }
+// });
 
 /*
     card 삭제
