@@ -30,14 +30,26 @@ PostSchema.plugin( autoIncrement.plugin , { model : 'Post', field:'card_id', sta
 
 var Post = module.exports = mongoose.model('Post', PostSchema);
 
-module.exports.createCard = function(newCard, callback){
+module.exports.createCard = function(newCard, callback) {
     newCard.save(callback);
-
 };
 
 module.exports.modifyCard = function(newCard,check, callback){
     var query = {card_id:check};
-    Post.update(query,{$set: {title:newCard.title, content:newCard.content, photo_path:newCard.photo_path, tag:newCard.tag,register_time:Date.now()}},callback);
+    try {
+        Post.update(query, {
+            $set: {
+                title: newCard.title,
+                content: newCard.content,
+                photo_path: newCard.photo_path,
+                tag: newCard.tag,
+                register_time: Date.now()
+            }
+        }, callback);
+    }
+    catch(e) {
+        console.log(e);
+    }
 };
 
 module.exports.getCardByCardId = function(card_id, callback){
