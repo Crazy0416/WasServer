@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
+var pubIp = require('../config/pubIp');
 var multer = require('multer');
 var mult_storage = multer.diskStorage({
     destination: function(req, file, cb){
@@ -134,7 +135,8 @@ router.post('/', tokenAuth, upload.single('photo'), function(req,res){
 
     var check = parseInt(req.body.card_id);
     console.log('POST /posts/card mode check = ', check);
-
+    console.log('newCard: ' + newCard);
+    console.log('newCard JSON: ' + JSON.stringify(newCard));
     if(check == 0){   //create and save
         Post.createCard(newCard, function(err,card){
             if(err){
@@ -204,7 +206,7 @@ router.delete('/', function(req,res){
     Post.getCardByCardId(card_id, function(err,card){
 
         if(err){
-            res.append("Access-Control-Allow-Origin", "*")
+            res.append("Access-Control-Allow-Origin", "http://" + pubIp.domain)
                 .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
                 .set()
                 .json({
@@ -214,7 +216,7 @@ router.delete('/', function(req,res){
             throw err;
         }else {
             if (!card) {
-                res.append("Access-Control-Allow-Origin", "*")
+                res.append("Access-Control-Allow-Origin", "http://" + pubIp.domain)
                     .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
                     .set()
                     .json({
@@ -225,7 +227,7 @@ router.delete('/', function(req,res){
 
                 Post.deleteCardByCardId(card_id,function(err,card){
                     if(err){
-                        res.append("Access-Control-Allow-Origin", "*")
+                        res.append("Access-Control-Allow-Origin", "http://" + pubIp.domain)
                             .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
                             .set()
                             .json({
@@ -234,7 +236,7 @@ router.delete('/', function(req,res){
                             });
                         throw err;
                     }else{
-                        res.append("Access-Control-Allow-Origin", "*")
+                        res.append("Access-Control-Allow-Origin", "http://" + pubIp.domain)
                             .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
                             .set()
                             .json({
