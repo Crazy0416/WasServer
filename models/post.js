@@ -6,7 +6,7 @@ var connection = mongoose.createConnection("mongodb://localhost/loginapp", funct
     if(err){
         console.log('mongodb connection Err' + err);
     } else {
-        consol.log('mongodb connection ok');
+        console.log('mongodb connection ok');
     }
 });
 autoIncrement.initialize(connection);
