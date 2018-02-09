@@ -47,6 +47,18 @@ function createChatMessage(img_url, uid, msg_data){
     document.getElementById('chatView').appendChild(chatMessage_Container);
 }
 
+function remainAmountChatList(remainCnt) {
+    var master = document.getElementById('chatView');
+    var slaveArray = master.getElementsByClassName('chatMessage_Container');
+    var slavesLength = slaveArray.length;
+
+    if(slavesLength > remainCnt) {
+        for(var i = remainCnt; i <= slavesLength; i++){
+            master.removeChild(slaveArray[i]);
+        }
+    }
+}
+
 function connectChatServer(url) {
     if (!window.WebSocket) {
         window.WebSocket = window.MozWebSocket;
@@ -61,6 +73,8 @@ function connectChatServer(url) {
 
             var objDiv = document.getElementById("chatView");
             objDiv.scrollTop = objDiv.scrollHeight;
+
+            remainAmountChatList(10);
 
             console.log(event.data);
         };
