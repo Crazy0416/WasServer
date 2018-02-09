@@ -53,13 +53,14 @@ function connectChatServer(url) {
         window.WebSocket = window.MozWebSocket;
     }
     if (window.WebSocket) {
+        console.log("websocket : " + url);
         socket = new WebSocket(url);        //"ws://127.0.0.1:8080/123/websocket"
         socket.onmessage = function(event) {
-            createChatMessage("", "운영자", "채팅방에 입장하셨습니다.");
+            createChatMessage("", "dump...", event.data);
             console.log(event.data);
         };
         socket.onopen = function(event) {
-            createChatMessage("", "운영자", event.data);
+            createChatMessage("", "운영자", "채팅방에 입장하셨습니다.");
             console.log(event.data);
         };
         socket.onclose = function(event) {
