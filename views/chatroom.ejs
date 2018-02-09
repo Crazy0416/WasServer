@@ -8,8 +8,14 @@
     <script src="/javascripts/getChatServerUrl.js" />
 </head>
 <body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        getChatServerUrl();
+    })
+</script>
 <%- include('header')%>
 <div class="container">
+
     <div class="postContainer">
 
     </div>
@@ -53,15 +59,10 @@
         <div class="chatForm">
             <form id="chatForm">
                 <input type="text" id="chatTextBox">
-                <input type="submit" id="chatSubmit" value="채팅">
+                <input type="button" id="chatSubmit" value="채팅">
             </form>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function() {
-        getChatServerUrl();
-    })
-</script>
 </body>
 </html>
