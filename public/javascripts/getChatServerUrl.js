@@ -55,7 +55,13 @@ function connectChatServer(url) {
         console.log("websocket : " + url);
         socket = new WebSocket(url);        //"ws://127.0.0.1:8080/123/websocket"
         socket.onmessage = function(event) {
-            createChatMessage("", "dump...", event.data);
+            var uid = event.data.split(':')[0];
+            var messgage = event.data.substr(event.data.indexOf(":"));
+            createChatMessage("/images/username.png", uid, messgage);
+
+            var objDiv = document.getElementById("chatView");
+            objDiv.scrollTop = objDiv.scrollHeight;
+
             console.log(event.data);
         };
         socket.onopen = function(event) {
