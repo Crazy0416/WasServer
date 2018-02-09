@@ -53,7 +53,7 @@ function remainAmountChatList(remainCnt) {
     var slavesLength = slaveArray.length;
 
     if(slavesLength > remainCnt) {
-        for(var i = remainCnt; i <= slavesLength; i++){
+        for(var i = 0; i <= slavesLength - remainCnt; i++){
             master.removeChild(slaveArray[i]);
         }
     }
