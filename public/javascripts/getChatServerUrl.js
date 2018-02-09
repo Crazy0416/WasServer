@@ -4,6 +4,7 @@ function getChatServerUrl(){
         url : '/chatserver/count',
         crossDomain : true,
         success : function(data) {
+            console.log('getChatServerUrl response: ' + data);
             connectChatServer('ws://' + data.data.ip + '/' + data.data.tagName + '/websocket');
         },
         error:function(request,status,error){
@@ -54,15 +55,15 @@ function connectChatServer(url) {
     if (window.WebSocket) {
         socket = new WebSocket(url);        //"ws://127.0.0.1:8080/123/websocket"
         socket.onmessage = function(event) {
-            createChatMessage(null, "운영자", "채팅방에 입장하셨습니다.");
+            createChatMessage("", "운영자", "채팅방에 입장하셨습니다.");
             console.log(event.data);
         };
         socket.onopen = function(event) {
-            createChatMessage(null, "운영자", event.data);
+            createChatMessage("", "운영자", event.data);
             console.log(event.data);
         };
         socket.onclose = function(event) {
-            createChatMessage(null, "운영자", "서버와의 접속이 끊겼습니다.");
+            createChatMessage("", "운영자", "서버와의 접속이 끊겼습니다.");
             console.log(event.data);
         };
     } else {
