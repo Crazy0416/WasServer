@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
-var pubIp = require('../config/pubIp');
 var multer = require('multer');
 var mult_storage = multer.diskStorage({
     destination: function(req, file, cb){

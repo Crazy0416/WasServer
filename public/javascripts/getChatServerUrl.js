@@ -1,11 +1,14 @@
 function getChatServerUrl(){
     $.ajax({
         type : 'GET',
-        url : '/chatserver/count',
+        url : 'http://localhost:3000/chatserver/count',
+        crossDomain : true,
         success : function(data) {
-            connectChatServer(data.data.ip + '/' + tagName + '/websocket')
+            connectChatServer('ws://' + data.data.ip + '/' + data.data.tagName + '/websocket');
         },
         error:function(request,status,error){
+            console.log(request);
+            console.log(status);
             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
         }
     });

@@ -2,16 +2,16 @@
 <html>
 <head>
     <title><%= title %></title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/chatroom.css" />
     <script src="/javascripts/getChatServerUrl.js" />
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
 </head>
 <body>
 <%- include('header')%>
 <div class="container">
     <div class="postContainer">
-        <%= chatServerAdress %>
+
     </div>
     <div class="chatContainer">
         <div class="chatView" id="chatView" style="overflow: auto;">
@@ -58,5 +58,10 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        getChatServerUrl();
+    })
+</script>
 </body>
 </html>

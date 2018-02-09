@@ -19,43 +19,7 @@ router.get('/tag/:tag', function(req, res, next){
     res.renderData['title'] = tag+"방";
     res.cookie('tagName', tag);
 
-    redisClient.select('1', function(err1, val1){
-
-        if(err1){
-            res.render('error', {
-                message: "DB SELECT ERR",
-                error: {
-                    status: 500,
-                    stack: "...."
-                }
-            })
-        } else{
-
-            redisClient.keys('*', function (err2, chatServer) {     // chatServer : 서버 <ip:port> 리스트
-
-                redisClient.mget(chatServer, function(err3, channelCntArray){
-
-                    // channelCntArrayInt : 서버에 접속한 사람들의 수 리스트
-                    var channelCntArrayInt = channelCntArray.map(function (x) {
-                        return parseInt(x, 10);
-                    });
-                    var min = channelCntArrayInt.reduce( function (previous, current) {
-                        return previous > current ? current:previous;
-                    });
-                    var A_index = channelCntArrayInt.indexOf(min);
-
-                    res.renderData['chatServerAdress'] = chatServer[A_index];
-
-                    redisClient.set(chatServer[A_index], channelCntArrayInt[A_index]+1);
-
-                    res.render('chatroom', res.renderData);
-
-                });
-
-            })
-
-        }
-    });
+    res.render('chatroom', res.renderData);
 
     /*
         자동완성을 위해 레디스에 검색값 집어넣기
