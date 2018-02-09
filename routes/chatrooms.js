@@ -17,6 +17,7 @@ router.use(addSessionObj);
 router.get('/tag/:tag', function(req, res, next){
     var tag = req.params.tag;
     res.renderData['title'] = tag+"방";
+    res.cookie('tagName', tag);
 
     redisClient.select('1', function(err1, val1){
 

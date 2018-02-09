@@ -4,6 +4,7 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/chatroom.css" />
+    <script src="/javascripts/getChatServerUrl.js" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
 </head>
 <body>
@@ -13,7 +14,7 @@
         <%= chatServerAdress %>
     </div>
     <div class="chatContainer">
-        <div class="chatView">
+        <div class="chatView" id="chatView" style="overflow: auto;">
             <div class="chatMessage_Container">
                 <div class="chatMessage_divImage">
                     <img class="chatMessage_Image" src="/images/ChatMessage/publicUser2.png" alt="">
