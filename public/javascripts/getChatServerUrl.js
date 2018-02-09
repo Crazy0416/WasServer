@@ -48,7 +48,6 @@ function createChatMessage(img_url, uid, msg_data){
 }
 
 function connectChatServer(url) {
-    var socket;
     if (!window.WebSocket) {
         window.WebSocket = window.MozWebSocket;
     }
