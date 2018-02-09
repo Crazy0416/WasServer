@@ -4,7 +4,7 @@ function getChatServerUrl(){
         url : '/chatserver/count',
         crossDomain : true,
         success : function(data) {
-            console.log('getChatServerUrl response: ' + data);
+            console.log('getChatServerUrl response: ' + JSON.stringify(data));
             connectChatServer('ws://' + data.data.ip + '/' + data.data.tagName + '/websocket');
         },
         error:function(request,status,error){
@@ -24,7 +24,7 @@ function createChatMessage(img_url, uid, msg_data){
 
     var chatMessage_Image = document.createElement('img');
     chatMessage_Image.setAttribute('class', 'chatMessage_Image');
-    chatMessage_Image.setAttribute('src', url);
+    chatMessage_Image.setAttribute('src', img_url);
 
     chatMessage_divImage.appendChild(chatMessage_Image);
 
