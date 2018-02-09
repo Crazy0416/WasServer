@@ -1,7 +1,7 @@
 function getChatServerUrl(){
     $.ajax({
         type : 'GET',
-        url : 'http://localhost:3000/chatserver/count',
+        url : '/chatserver/count',
         crossDomain : true,
         success : function(data) {
             connectChatServer('ws://' + data.data.ip + '/' + data.data.tagName + '/websocket');
