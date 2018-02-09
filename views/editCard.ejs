@@ -31,7 +31,7 @@
         </div>
         <script type="text/javascript">
             function editCardPost(){
-                submitUrlHandler("frm_editPost", "post", "/users/card", function(response){
+                submitUrlHandler("frm_editPost", "post", "/users/card", function(error, response){
                     alert("submuitUrlHandler가 작동합니다. : " + JSON.stringify(response));
                 });
             }
