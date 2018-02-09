@@ -12,6 +12,7 @@ var users = require('./routes/users');
 var chatrooms = require('./routes/chatrooms');
 var popTag = require('./routes/popTag');
 var users_card = require('./routes/users_card');
+//var autoComplete = require('./routes/autoComplete');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use('/users', users);
 app.use('/chatrooms', chatrooms);
 app.use('/popTag', popTag);
 app.use('/users/card', users_card);
+//app.use('/auto', autoComplete);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

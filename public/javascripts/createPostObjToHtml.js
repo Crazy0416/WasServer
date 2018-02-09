@@ -1,3 +1,9 @@
+/*
+ * author : Platinum
+ * date   : 2018.02.
+ * copyright allright reserved. (c)
+ */
+
 function loadPostPage(href){
     window.open(href, null, "width = 600, height = 600, location=no, resizable=no")
 }

@@ -12,7 +12,7 @@ router.use(addSessionObj);
 
 
 /*
-* GET chatroom page
+ * GET chatroom page
  */
 router.get('/tag/:tag', function(req, res, next){
     var tag = req.params.tag;
@@ -54,8 +54,44 @@ router.get('/tag/:tag', function(req, res, next){
             })
 
         }
+    });
+
+    /*
+        자동완성을 위해 레디스에 검색값 집어넣기
+     */
+    console.log('redis tag in');
+    tag = tag+'*';
+    console.log('tag+* : ', tag);
+    var input ='';
+    for(var i=0; i<tag.length; i++){
+        input = input + tag[i];
+        console.log('input value : ', input);
+        redisClient.ZADD("tag",0,input,function(err,result){
+            if(err){
+                console.log('error');
+                return;
+            }else{
+                console.log('input success');
+            }
+        })
+    }
+    /*
+    count(score)를 넣으면 그때 하기
+    //tag = tag+'*';
+    redisClient.ZINCRBY("tag", 1, tag, function(err, result){
+        if(err){
+            console.log("error");
+            return;
+        }else{
+            console.log('tag+* in');
+            var result_json = {};
+            result_json["result"] = result;
+            //res.json(result_json);
+            console.log(result_json);
+        }
 
     });
+    */
 
     // TODO: 채팅 채널에 인원수 증가
 

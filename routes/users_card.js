@@ -32,7 +32,7 @@ router.use(function(req, res, next){
 });
 
 /* GET card page.*/
-router.get('/:card_id', addSessionObj,function(req, res, next){
+router.get('/:card_id', addSessionObj, function(req, res, next) {
     var card_id = req.params['card_id'];
 
     Post.getCardById(card_id, function(err, card){
@@ -51,7 +51,6 @@ router.get('/:card_id', addSessionObj,function(req, res, next){
             res.renderData['postImageUrl'] = card.photo_path;
             res.renderData['postContent'] = card.content;
             res.renderData['postTag'] = card.tag;
-
             res.render('card', res.renderData);
         }
     });
@@ -70,7 +69,7 @@ router.get('/', tokenAuth, function(req,res){
 
     Post.getCardSequence(user_ObjectId,number,function(err,card){
         console.log('here!!!');
-        if(err){
+        if(err) {
             console.log('GET /posts/card getCardSequence ERROR: ' + err);
             res.append("Access-Control-Allow-Origin", "*")
                 .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
@@ -80,7 +79,7 @@ router.get('/', tokenAuth, function(req,res){
                     message:'DB getCardSequence error'
                 });
             throw err;
-        }else {
+        } else {
             console.log('GET /users/card getCardSequence card Array : ' + JSON.stringify(card));
             console.log('GET /users/card getCardSequence card Array length: ' + card.length);
             var cardArr=[];
