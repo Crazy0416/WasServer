@@ -10,7 +10,7 @@
 <body>
 
 <div class="container">
-    <form action="/users/card" onsubmit="editCardPost()" class="writePost" id="frm_editPost" enctype="multipart/form-data">
+    <form onsubmit="editCardPost()" class="writePost" id="frm_editPost" enctype="multipart/form-data">
         <input type="text" name="user_ObjectId" style="display: none" />
         <input type="text" name="card_id" value="0" style="display: none"/>
         <div class="titleBox inputBox">
@@ -31,9 +31,7 @@
         </div>
         <script type="text/javascript">
             function editCardPost(){
-                submitUrlHandler("frm_editPost", "post", "/users/card", function(error, response){
-                    alert("submuitUrlHandler가 작동합니다. : " + JSON.stringify(response));
-                });
+                submitUrlHandler("frm_editPost", "post", "/users/card", null);
             }
         </script>
 
