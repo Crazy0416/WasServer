@@ -58,8 +58,8 @@
         </div>
         <div class="chatForm">
             <form id="chatForm">
-                <input type="text" id="chatTextBox">
-                <input type="button" id="chatSubmit" value="채팅">
+                <input type="text" name="message" id="chatTextBox" onkeypress="if(event.keyCode==13) {send(this.form.message.value); return false;}" autocomplete="off">
+                <input type="button" id="chatSubmit" value="채팅" onclick="send(this.form.message.value)">
             </form>
         </div>
     </div>

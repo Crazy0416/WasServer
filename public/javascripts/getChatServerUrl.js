@@ -70,13 +70,13 @@ function connectChatServer(url) {
     } else {
         alert("Your browser does not support Web Socket.");
     }
+}
 
-    function send(message) {
-        $(function(){$('#chatTextBox').val('');});  if (!window.WebSocket) { return; }
-        if (socket.readyState == WebSocket.OPEN) {
-            socket.send(message);
-        } else {
-            alert("서버와 연결되어있지 않습니다.");
-        }
+function send(message) {
+    $(function(){$('#chatTextBox').val('');});  if (!window.WebSocket) { return; }
+    if (socket.readyState == WebSocket.OPEN) {
+        socket.send(message);
+    } else {
+        alert("서버와 연결되어있지 않습니다.");
     }
 }
