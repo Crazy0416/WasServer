@@ -23,6 +23,6 @@ module.exports.createOrUpdateTagCount = function(newTag, callback){
 };
 
 module.exports.popListTag = function(callback){
-    Tag.find({},{_id:0, createdAt:0,__v:0},{sort:{count:-1}},callback);
+    Tag.find({},{_id:0, createdAt:0,__v:0},{sort:{count:-1},limit:10},callback);
 };
 

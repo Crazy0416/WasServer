@@ -65,7 +65,7 @@ router.get('/hotlist', function(req, res, next){
 });
 
 /*
- * 오늘의 인기태그 뽑기 위해 (하루에 한번씩 삭제됨), 삭제 전에 파일에 옮겨쓰기 추가하면 좋을듯
+ * 오늘의 인기태그 10개 뽑기 (하루에 한번씩 삭제됨), 삭제 전에 파일에 옮겨쓰기 추가하면 좋을듯
  */
 router.get('/todayList', function(req,res){
     console.log('get/todayList in');
@@ -75,6 +75,10 @@ router.get('/todayList', function(req,res){
             console.log('err');
         }else{
             console.log('pop list result :',result);
+            res.json({
+                success:true,
+                data:result
+            });
         }
     })
 
