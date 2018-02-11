@@ -23,6 +23,8 @@ var upload= multer({
 // models
 var User = require('../models/user');   //user schema 얻어오기 위함
 var Post = require('../models/post');    //post schema 얻어오기 위함
+var Tag = require('../../models/tag');  //tag schema
+
 
 router.use(function(req, res, next){
     res.renderData = {};          //
@@ -153,8 +155,83 @@ router.post('/', tokenAuth, upload.single('photo'), function(req,res){
                 console.log('card_ObjectId : ',card_ObjectId);
                 console.log('new card save success');
 
-                res.append("Access-Control-Allow-Origin", "*")
-                    .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+                console.log('tags input DB');
+                /* tags 디비에 추가*/
+                for(var i=0; i<newCard.tag.length; i++){
+                    console.log('tag name :',newCard.tag[i]);
+                    Tag.createOrUpdateTagCount(newCard.tag[i], function(err,result){
+                        if(err){
+                            console.log('err');
+                            res.append("Access-Control-Allow-Origin","*")
+                                .append("Access-Control-Allow-Headers","origin, x-requested-with, content-type, accpet")
+                                .set()
+                                .json({
+                                    success:false,
+                                    message:'DB inputTag error'
+                                });
+                            throw err;
+                        }else{
+                            console.log('input tag success');
+                        }
+                    });
+                }
+
+                /* tags redis에 추가 */
+                console.log('tag : ', newCard.tag);
+                console.log('tag lengthL:', newCard.tag.length);
+                console.log('tage name : ', newCard.tag[0]);
+
+                //redis에 저장할 카드 객체
+                var redis_card = {
+                    title: newCard.title,
+                    content: newCard.content,
+                    photo_path: newCard.photo_path,
+                    tag: newCard.tag
+                };
+                console.log('redis-card : ', redis_card);
+
+                for(var i=0; i<newCard.tag.length; i++){
+                    var key = redis_card.tag[i];
+                    var value = redis_card;
+
+                    console.log('key : ', key);
+                    console.log('value :', value);
+                    client.lpush(key,JSON.stringify(value), function(err){  //JSON을 문자열 객체로 변환하여 레디스에 삽입
+                        if(err){
+                            res.append("Access-Control-Allow-Origin","*")
+                                .append("Access-Control-Allow-Headers","origin, x-requested-with, content-type, accpet")
+                                .set()
+                                .json({
+                                    success:false,
+                                    message:'Redis push error'
+                                });
+                            throw err;
+                        }else{
+                            console.log('lpush success');
+
+                            console.log('key : ', key);
+                            console.log('key length : ', client.llen(key)); //왜 이게 true가 나올까?
+
+                            client.ltrim(key, 0, 100, function (err) {   //0~100범위 밖 index들 삭제
+                                if (err) {
+                                    res.append("Access-Control-Allow-Origin", "*")
+                                        .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accpet")
+                                        .set()
+                                        .json({
+                                            success: false,
+                                            message: 'Redis trim error'
+                                        });
+                                    throw err;
+                                } else {
+                                    console.log('ltrim success');
+
+                                }
+                            });
+                        }
+                    });
+                }
+                res.append("Access-Control-Allow-Origin","*")
+                    .append("Access-Control-Allow-Headers","origin, x-requested-with, content-type, accpet")
                     .set()
                     .json({
                         success:true,
@@ -164,6 +241,8 @@ router.post('/', tokenAuth, upload.single('photo'), function(req,res){
                     });
             }
         });
+        console.log('new card save success');
+
     }else if(check != 0){ //modify
 
         Post.modifyCard(newCard,check,function(err,card){

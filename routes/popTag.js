@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var addSessionObj = require('../middlewares/addSessionObj');
+var Tag = require('../../models/tag');  //tag schema
 
 router.use(function(req, res, next){
 
@@ -18,7 +19,6 @@ router.get('/', function(req, res, next){
     res.render('popTag', res.renderData);
 
 });
-
 
 
 /*
@@ -62,6 +62,22 @@ router.get('/hotlist', function(req, res, next){
         .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
         .set()
         .json(hotList);
+});
+
+/*
+ * 오늘의 인기태그 뽑기 위해 (하루에 한번씩 삭제됨), 삭제 전에 파일에 옮겨쓰기 추가하면 좋을듯
+ */
+router.get('/todayList', function(req,res){
+    console.log('get/todayList in');
+
+    Tag.popListTag(function(err,result){
+        if(err){
+            console.log('err');
+        }else{
+            console.log('pop list result :',result);
+        }
+    })
+
 });
 
 module.exports = router;
