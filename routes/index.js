@@ -7,6 +7,7 @@ var client = redis.createClient(6379,'localhost');
 // client.select(1, function(err) {
 //     console.log('session redis select db1');
 // });
+
 router.use(function(req, res, next){
 
   res.renderData = {};          // render 할 때 보낼 객체
@@ -47,46 +48,43 @@ router.get('/auto', function(req,res){
 
         var query = ["tag", word, changedWord];
 
-        client.select(0, function(err) {
-            client.ZRANGEBYLEX(query, function (err, result) {
-                if (err) {
-                    console.log('err');
-                    res.append("Access-Control-Allow-Origin", "*")
-                        .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
-                        .append("Access-Control-Allow-Credentials", true)
-                        .set()
-                        .json({
-                            success: false,
-                            data: "REDIS error"
-                        });
-                    throw err;
-                } else {
-                    console.log('auto tag in');
-                    resultArr = result;
-                    //res.json(result_json);
-                    console.log('resultArr :', resultArr);
-                    console.log('result :', result);
-                    console.log('result arr length :', resultArr.length);
+         //위에 db1 주석처리 했으므로 select 없어도 됨
+        client.ZRANGEBYLEX(query, function (err, result) {
+            if (err) {
+                console.log('err');
+                res.append("Access-Control-Allow-Origin", "*")
+                    .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+                    .append("Access-Control-Allow-Credentials", true)
+                    .set()
+                    .json({
+                        success: false,
+                        data: "REDIS error"
+                    });
+                throw err;
+            } else {
+                console.log('auto tag in');
+                resultArr = result;
 
-                    for (var i = 0; i < resultArr.length; i++) {
-                        if (resultArr[i].indexOf(subValue) != -1) {
-                            console.log('find :', resultArr[i]);
-                            findArr.push(resultArr[i]);
-                        }
+                console.log('resultArr :', resultArr);
+                console.log('result :', result);
+                console.log('result arr length :', resultArr.length);
+                for (var i = 0; i < resultArr.length; i++) {
+                    if (resultArr[i].indexOf(subValue) != -1) {
+                        console.log('find :', resultArr[i]);
+                        findArr.push(resultArr[i]);
                     }
-                    console.log('findArr:', findArr);
-                    res.append("Access-Control-Allow-Origin", "*")
-                        .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
-                        .append("Access-Control-Allow-Credentials", true)
-                        .set()
-                        .json({
-                            success: true,
-                            data: findArr
-                        });
                 }
-            });
+                console.log('findArr:', findArr);
+                res.append("Access-Control-Allow-Origin", "*")
+                    .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+                    .append("Access-Control-Allow-Credentials", true)
+                    .set()
+                    .json({
+                        success: true,
+                        data: findArr
+                    });
+            }
         });
-
     }else{
         console.log('word is null');
         res.append("Access-Control-Allow-Origin", "*")
