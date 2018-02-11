@@ -4,9 +4,9 @@ var addSessionObj = require('../middlewares/addSessionObj');
 var redis = require('redis');
 var client = redis.createClient(6379,'localhost');
 
-client.select(1, function(err) {
-    console.log('session redis select db1');
-});
+// client.select(1, function(err) {
+//     console.log('session redis select db1');
+// });
 router.use(function(req, res, next){
 
   res.renderData = {};          // render 할 때 보낼 객체
