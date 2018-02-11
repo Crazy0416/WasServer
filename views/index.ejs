@@ -5,6 +5,9 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/basic.css" />
     <link rel="stylesheet" href="/stylesheets/index.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="/javascripts/submitUrlHandler.js"></script>
     <script src="/javascripts/echarts.min.js"></script>
     <script src="/javascripts/echarts-wordcloud.min.js"></script>
@@ -12,6 +15,37 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#tagUrl').keyup(function(){
+                var word = $('#tagUrl').val();
+                var _data = {word:word};
+                $.ajax({
+                    'type' : 'GET',
+                    'url' : '/auto',
+                    'data' : _data,
+                    'async': false,
+                    'success' : function(json){
+                        if(json['success'] === true){
+                            //alert('get data success :' + json['data']);
+                            var dataList = json['data'];
+                            //alert('dataList ! :' + dataList);
+                            $('#tagUrl').autocomplete({
+                                minLength: 0,         // 입력키워드 최소 값 (예: 두글자 이상시 작동)
+                                autoFocus: false,   // 첫번째 추천어 자동표시
+                                delay: 5,            // 반응지연시간 ( 클수록 반응은 느려지고 서버 부하는 줄어든다. )
+                                source: dataList  // 자동완성 서버 URL
+                            });
+                        }else{
+                            alert('get data fail');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
   </head>
   <body>
   <%- include('header')%>
@@ -62,6 +96,7 @@
       <input type="submit" class="btn_url" value="이동" onclick="getChatRoom()">
     </form>
   </div>
+
   <script language="javascript">
     function getChatRoom(){
         var url = $('#tagUrl').val();
