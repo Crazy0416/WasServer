@@ -47,13 +47,13 @@ function createChatMessage(img_url, uid, msg_data){
     document.getElementById('chatView').appendChild(chatMessage_Container);
 }
 
-function remainAmountChatList(remainCnt) {
+function remainAmountChatList(remainCnt, deleteCnt) {
     var master = document.getElementById('chatView');
     var slaveArray = master.getElementsByClassName('chatMessage_Container');
     var slavesLength = slaveArray.length;
 
     if(slavesLength > remainCnt) {
-        for(var i = 0; i <= slavesLength - remainCnt; i++){
+        for(var i = 0; i < deleteCnt; i++){
             master.removeChild(slaveArray[i]);
         }
     }
@@ -74,7 +74,7 @@ function connectChatServer(url) {
             var objDiv = document.getElementById("chatView");
             objDiv.scrollTop = objDiv.scrollHeight;
 
-            remainAmountChatList(10);
+            remainAmountChatList(150, 50);
 
             console.log(event.data);
         };
