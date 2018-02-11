@@ -68,12 +68,14 @@ router.get('/auto', function(req,res){
                 console.log('resultArr :', resultArr);
                 console.log('result :', result);
                 console.log('result arr length :', resultArr.length);
+
                 for (var i = 0; i < resultArr.length; i++) {
                     if (resultArr[i].indexOf(subValue) != -1) {
                         console.log('find :', resultArr[i]);
-                        findArr.push(resultArr[i]);
+                        findArr.push((resultArr[i].split('*'))[0]);
                     }
                 }
+
                 console.log('findArr:', findArr);
                 res.append("Access-Control-Allow-Origin", "*")
                     .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
