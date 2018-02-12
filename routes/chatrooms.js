@@ -10,6 +10,7 @@ router.use(function(req, res, next){
 });
 router.use(addSessionObj);
 
+var Post = require('../models/post');    //post schema 얻어오기 위함
 
 /*
  * GET chatroom page
@@ -59,8 +60,19 @@ router.get('/tag/:tag', function(req, res, next){
     */
 
     // TODO: 채팅 채널에 인원수 증가
+});
+
+/*
+ * 채팅방 이름(tag) 받아서 포스팅 보여주기
+ */
+
+router.get('cardList', function(req,res){
+
+    var tag = req.params.tag;
+
 
 
 });
+
 
 module.exports = router;

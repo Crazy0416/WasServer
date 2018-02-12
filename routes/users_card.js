@@ -19,7 +19,6 @@ var upload= multer({
 });
 
 
-
 // models
 var User = require('../models/user');   //user schema 얻어오기 위함
 var Post = require('../models/post');    //post schema 얻어오기 위함
