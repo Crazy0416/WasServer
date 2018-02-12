@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var addSessionObj = require('../middlewares/addSessionObj');
-var Tag = require('../../models/tag');  //tag schema
+var Tag = require('../models/tag');  //tag schema
 
 router.use(function(req, res, next){
 
