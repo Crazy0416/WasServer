@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var connection = mongoose.createConnection("mongodb://localhost/loginapp");
+//var connection = mongoose.createConnection("mongodb://localhost/loginapp");
 //var upsert = require('mongoose-upsert');
 
 var TagSchema = new Schema({

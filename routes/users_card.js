@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/loginapp');
 var path = require('path');
 var multer = require('multer');
 var mult_storage = multer.diskStorage({
