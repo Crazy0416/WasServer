@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var addSessionObj = require('../middlewares/addSessionObj');
 var uidParamAuth = require('../middlewares/uidParamAuth');
+var tokenAuth = require('../middlewares/tokenAuth');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/loginapp');
 var redis = require('redis');
@@ -72,7 +73,7 @@ router.get('/userProfile/:uid', uidParamAuth, function(req, res, next){
 });
 
 /* GET editCard page.*/
-router.get('/userProfile/:uid/editCard', function(req, res, next){
+router.get('/userProfile/:uid/editCard', tokenAuth, function(req, res, next){
 
     // TODO: 몽고 디비에서 데이터 추출해야함
 
