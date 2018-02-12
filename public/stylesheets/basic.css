@@ -1,8 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Fjalla+One);
 
+@font-face {
+    font-family: 'NanumGothic';
+    src: url(/fonts/NanumFont_TTF_ALL/NanumGothic.ttf) format('truetype');
+}
+
 * {
     margin: 0px;
     padding: 0px;
+    font-family: NanumGothic, serif;
 }
 a{
     text-decoration: unset;
@@ -13,25 +19,21 @@ html, body {
     padding: 0px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-h1{
-    display: inline-block;
-}
-
 header{
     align-items: center;
     line-height: inherit;
     display: table;
     width: 100%;
-    height: 11%;
+    height: 7%;
+    background-color: darkslategray;
 }
-.rightClass{
+.midClass{
     width: 28%;
-    height: 6rem;
     display: table-cell;
     vertical-align: middle;
 }
 .pageTitle{
-    width: 40%;
+    width: 20%;
     height: auto;
     text-align: center;
     vertical-align: middle;
@@ -56,6 +58,7 @@ header{
     text-align: center;
     color: #533d4a;
     font-weight: bold;
+    color: aliceblue;
     font-size: 19px;
     display: table-cell;
     vertical-align: middle;
