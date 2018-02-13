@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var connection = mongoose.createConnection("mongodb://localhost/loginapp", function(err) {
+var config = require('../config/waserver');
+var connection = mongoose.createConnection('mongodb://' + config.mongodb['host'] +'/loginapp', function(err) {
     if(err){
         console.log('mongodb connection Err' + err);
     } else {
