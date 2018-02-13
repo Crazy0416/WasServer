@@ -1,3 +1,4 @@
+var config = require('../config/waserver');
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 var Post = require('./post');
