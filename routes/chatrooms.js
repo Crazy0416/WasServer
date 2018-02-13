@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var redis = require('redis');
+var config = require('../config/waserver');
 var redisClient = redis.createClient({
     host: config.redis['host'],
     port: config.redis['port']
