@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/loginapp');
+var config = require('../config/waserver');
+mongoose.connect('mongodb://' + config.mongodb['host'] +'/loginapp');
 var redis = require('redis');
-var client = redis.createClient();
+var client = redis.createClient({
+    host: config.redis['host'],
+    port: config.redis['port']
+});
 var path = require('path');
 var multer = require('multer');
 var mult_storage = multer.diskStorage({

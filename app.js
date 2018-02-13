@@ -4,8 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var redis = require('redis');
-var client = redis.createClient(6379,'localhost');
 
 var index = require('./routes/index');
 var users = require('./routes/users');

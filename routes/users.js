@@ -4,9 +4,13 @@ var addSessionObj = require('../middlewares/addSessionObj');
 var uidParamAuth = require('../middlewares/uidParamAuth');
 var tokenAuth = require('../middlewares/tokenAuth');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/loginapp');
+var config = require('../config/waserver');
+mongoose.connect('mongodb://' + config.mongodb['host'] +'/loginapp');
 var redis = require('redis');
-var redisClient = redis.createClient(6379, "127.0.0.1");        // url 설정해서 db 공간을 바꿀 수 있음
+var redisClient = redis.createClient({
+    host: config.redis['host'],
+    port: config.redis['port']
+});        // url 설정해서 db 공간을 바꿀 수 있음
 
 var Post = require('../models/post');    //post schema 얻어오기 위함
 

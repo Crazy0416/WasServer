@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var redis = require('redis');
-var redisClient = redis.createClient(6379, "127.0.0.1");
+var redisClient = redis.createClient({
+    host: config.redis['host'],
+    port: config.redis['port']
+});
 var addSessionObj = require('../middlewares/addSessionObj');
 
 router.use(function(req, res, next){
