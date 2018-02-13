@@ -66,31 +66,47 @@ router.get('/tag/:tag', function(req, res, next){
     // TODO: 채팅 채널에 인원수 증가
 });
 
+
 /*
  * 채팅방 이름(tag) 받아서 포스팅 보여주기 / redis 모든 함수 콜백 지원
- * req : #을 제외한 채팅방(태그)이름
- * res : json 형식의 채팅방에 있는 포스팅들 (개수 정해서 보낼 수 있음)
+ * req : #을 제외한 태그(채팅방)이름
+ * res : 그 채팅방에 있는 포스팅들 json형식 (개수 정해서 보낼 수 있음)
  */
 
-dataList = client.LRANGE(tag,1,length, function(err) {
-    if(err){
-        console.log('redis error');
-        res.append("Access-Control-Allow-Origin", "*")
-            .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accpet")
-            .set()
-            .json({
-                success: false,
-                message: 'Redis trim error'
-            });
-        throw err;
-    }else{
-        console.log('(card)dataList: ', dataList);
-        res.json({
-            success:true,
-            data:dataList
+router.get('/cardList', function(req,res){
+
+    console.log('chat/cardList in');
+    var dataList = [];
+    var tag = req.query.tag;
+    tag = '#'+tag;
+    client.LLEN(tag, function(err,result){
+        var length = result;
+        console.log('tag(chatroom) name:',tag);
+        console.log('chatroom length:',length);
+        client.LRANGE(tag,1,length, function(err, result) {
+            if(err){
+                console.log('redis error');
+                res.append("Access-Control-Allow-Origin", "*")
+                    .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accpet")
+                    .set()
+                    .json({
+                        success: false,
+                        message: 'Redis trim error'
+                    });
+                throw err;
+            }else{
+                dataList = result;
+                console.log('(card)dataList: ', dataList);
+                res.json({
+                    success:true,
+                    data:dataList
+                });
+            }
         });
-    }
+    });
 });
+
+
 
 
 module.exports = router;

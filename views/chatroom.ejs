@@ -6,11 +6,48 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/chatroom.css" />
     <script src="/javascripts/getChatServerUrl.js" ></script>
+    <script src="/javascripts/jquery.cookie.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             getChatServerUrl();
         })
     </script>
+
+    <!-- 채팅룸에 뿌려줄 포스팅 -->
+    <script>
+        $(document).ready(function(){
+            var tag = $.cookie('tagName');
+            console.log('get cookie name : ', tag);
+
+            console.log('in updateCard');
+            $.ajax({
+                'type':'GET',
+                'url':'/chat/cardList',
+                //'cache':false,
+                'data':{tag:tag},
+                'async': false,
+                'datatype':'json',
+                'success': function(json){
+                    if(json['success']===true){
+                        var cardList = json['data'];
+                        console.log('cardList :', cardList);
+
+                        var table = $('<table/>').appendTo($('#showCard'));
+                        $.each(cardList,function(i, card){
+                            var temp = JSON.parse(card);    //string을 object로 바꿈
+                            $('<tr/>').appendTo(table)
+                                .append($('<td/>').text(temp.title))
+                                .append($('<td/>').text(temp.content))
+                                .prepend(src=temp.photo_path);  //이미지는 테스트 해봐야함!
+
+                        });
+                    }
+                }
+            });
+            // setTimeout(); //주기적으로 업데이트 하기 위해
+        });
+    </script>
+
 </head>
 <body>
 <%- include('header')%>
