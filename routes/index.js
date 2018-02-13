@@ -2,7 +2,11 @@ var express = require('express');
 var router = express.Router();
 var addSessionObj = require('../middlewares/addSessionObj');
 var redis = require('redis');
-var client = redis.createClient(6379,'localhost');
+var config = require('../config/waserver');
+var client = redis.createClient({
+    host: config.redis['host'],
+    port: config.redis['port']
+});
 
 // client.select(1, function(err) {
 //     console.log('session redis select db1');

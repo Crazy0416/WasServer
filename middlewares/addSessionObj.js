@@ -1,5 +1,9 @@
+var config = require('../config/waserver');
 var redis = require('redis');
-var redisClient = redis.createClient(6379, "127.0.0.1");        // url 설정해서 db 공간을 바꿀 수 있음
+var redisClient = redis.createClient({
+    host: config.redis['host'],
+    port: config.redis['port']
+});        // url 설정해서 db 공간을 바꿀 수 있음
 
 module.exports = function(req, res, next) {
 
