@@ -79,11 +79,11 @@ router.get('/cardList', function(req,res){
     var dataList = [];
     var tag = req.query.tag;
     tag = '#'+tag;
-    client.LLEN(tag, function(err,result){
+    redisClient.LLEN(tag, function(err,result){
         var length = result;
         console.log('tag(chatroom) name:',tag);
         console.log('chatroom length:',length);
-        client.LRANGE(tag,1,length, function(err, result) {
+        redisClient.LRANGE(tag,0,length, function(err, result) {
             if(err){
                 console.log('redis error');
                 res.append("Access-Control-Allow-Origin", "*")
