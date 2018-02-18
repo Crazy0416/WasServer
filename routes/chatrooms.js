@@ -78,6 +78,7 @@ router.get('/cardList', function(req,res){
     console.log('chat/cardList in');
     var dataList = [];
     var tag = req.query.tag;
+    var cardCnt = req.query.
     tag = '#'+tag;
     redisClient.LLEN(tag, function(err,result){
         var length = result;
