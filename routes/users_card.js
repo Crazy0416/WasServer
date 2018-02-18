@@ -193,7 +193,8 @@ router.post('/', tokenAuth, upload.single('photo'), function(req,res){
                     title: newCard.title,
                     content: newCard.content,
                     photo_path: newCard.photo_path,
-                    tag: newCard.tag
+                    tag: newCard.tag,
+                    card_ObjectId: card_ObjectId
                 };
                 console.log('redis-card : ', redis_card);
 
