@@ -3,8 +3,16 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var autoIncrement = require('mongoose-auto-increment');
 var config = require('../config/waserver');
+var sentry = require('../common/sentry');
 var connection = mongoose.createConnection('mongodb://' + config.mongodb['host'] +'/loginapp', function(err) {
     if(err){
+        sentry.message(
+            "DB connect error",  //message : 예외
+            "POST post.js",             //logger : 어떤 클라이언트에서 예외가 나왔는지
+            {
+                type: "DB error"
+            }
+        );
         console.log('mongodb connection Err' + err);
     } else {
         console.log('mongodb connection ok');
@@ -83,17 +91,4 @@ module.exports.getCardSequence = function(user_ObjectId, number, callback) {
     console.log('newNumber : ',newNumber);
 
     Post.find(query,{},{sort:{card_id:-1},limit:10,skip:newNumber}, callback);
-    /*
-    Post.find(query,{},{sort:{card_id:-1},limit:5,skip:number}, function(err,callback){
-        if(err){
-            console.log(err);
-        }
-        res.json('index', {data:data});
-    });
-    Post.find(query,{},{sort:{card_id:-1},limit:5,skip:newNumber},function(err,callback){
-        if(err)  console.log(err);
-         console.log(callback);
-    });
-     */
-
 };

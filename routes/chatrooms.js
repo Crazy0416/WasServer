@@ -38,6 +38,14 @@ router.get('/tag/:tag', function(req, res, next){
         console.log('input value : ', input);
         redisClient.ZADD("tag",0,input,function(err,result){
             if(err){
+                sentry.message(
+                    "Redis input error",  //message : 예외
+                    "get chatrooms/tag",             //logger : 어떤 클라이언트에서 예외가 나왔는지
+                    {
+                        note: "input value(tag):"+input,     //extra : 오류 판별을 위한 다른 정보
+                        type: "Redis error"
+                    }
+                );
                 console.log('error');
                 return;
             }else{
@@ -85,6 +93,14 @@ router.get('/cardList', function(req,res){
         console.log('chatroom length:',length);
         redisClient.LRANGE(tag,0,length, function(err, result) {
             if(err){
+                sentry.message(
+                    "Redis get cardList error",  //message : 예외
+                    "POST chatrooms/cardList",             //logger : 어떤 클라이언트에서 예외가 나왔는지
+                    {
+                        note: "tag name:"+tag,     //extra : 오류 판별을 위한 다른 정보
+                        type: "Redis error"
+                    }
+                );
                 console.log('redis error');
                 res.append("Access-Control-Allow-Origin", "*")
                     .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accpet")
