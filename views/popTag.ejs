@@ -9,73 +9,28 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
 </head>
 <body>
+<script>
+    $(window).ready(function() {
+        setInterval(function() {
+            realtimeHotListVue.fetchData();
+            todayListVue.fetchData();
+        }, 2000)
+    })
+</script>
     <%- include('header')%>
     <div class="container">
-        <div class="realtimePopulateTagBox">
+        <div class="realtimePopulateTagBox" id="realtimeHotList">
             <p class="realtimePopulateTag">
                 <div class="tagTitle">
                     <h2>실시간 인기 채팅방</h2> <!-- 채팅 서버에서 끊어질 때마다 count -1 해야함 -->
                 </div>
                 <div class="tagListBox">
                     <ol class="tagList">
-                        <li class="list">
-                            <a href="#" class="tagRank">
-                                <em class="num">1</em>
-                                <span class="title">test</span>
-                            </a>
-                        </li>
-                        <li class="list">
-                            <a href="#" class="tagRank">
-                                <em class="num">2</em>
-                                <span class="title">test</span>
-                            </a>
-                        </li>
-                        <li class="list">
-                            <a href="#" class="tagRank">
-                                <em class="num">3</em>
-                                <span class="title">test</span>
-                            </a>
-                        </li>
-                        <li class="list">
-                            <a href="#" class="tagRank">
-                                <em class="num">4</em>
-                                <span class="title">test</span>
-                            </a>
-                        </li>
-                        <li class="list">
-                            <a href="#" class="tagRank">
-                                <em class="num">5</em>
-                                <span class="title">test</span>
-                            </a>
-                        </li>
-                        <li class="list">
-                            <a href="#" class="tagRank">
-                                <em class="num">6</em>
-                                <span class="title">test</span>
-                            </a>
-                        </li>
-                        <li class="list">
-                            <a href="#" class="tagRank">
-                                <em class="num">7</em>
-                                <span class="title">test</span>
-                            </a>
-                        </li>
-                        <li class="list">
-                            <a href="#" class="tagRank">
-                                <em class="num">8</em>
-                                <span class="title">test</span>
-                            </a>
-                        </li>
-                        <li class="list">
-                            <a href="#" class="tagRank">
-                                <em class="num">9</em>
-                                <span class="title">test</span>
-                            </a>
-                        </li>
-                        <li class="list">
-                            <a href="#" class="tagRank">
-                                <em class="num">10</em>
-                                <span class="title">test</span>
+                        <li v-for="(item, index) in items" class="list">
+                            <a v-bind:href="'/chatrooms/tag/'+item.name" class="tagRank">
+                                <em class="num">{{index}}</em>
+                                <span class="title">{{item.name}}</span>
+                                <span class="count">{{item.value}}</span>
                             </a>
                         </li>
                     </ol>
@@ -116,9 +71,31 @@
                     axios.get('/popTag/todayList')
                     .then(function(data) {
                         var dataList = data.data.data;
+                        console.log("todayList: ", dataList);
                         // 데이터 어떻게 바꿀건지 생각하셈
                         self.items = dataList;
                     })
+                }
+            }
+        })
+        var realtimeHotListVue = new Vue({
+            el: '#realtimeHotList',
+            data: {
+                items: []
+            },
+            created: function() {
+                this.fetchData();
+            },
+            methods: {
+                fetchData: function() {
+                    var self = this;
+                    axios.get('/popTag/hotlist')
+                        .then(function(data) {
+                            var dataList = data.data;
+                            // 데이터 어떻게 바꿀건지 생각하셈
+                            console.log("realtimeHotList: ", dataList);
+                            self.items = dataList;
+                        })
                 }
             }
         })

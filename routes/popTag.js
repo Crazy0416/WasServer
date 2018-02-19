@@ -34,47 +34,20 @@ router.get('/hotlist', function(req, res, next){
     }
 
     request(options, function(error, response, body){
-        if(!error && response.statusCode == 200){
-            console.log('popTag body:',body);
+        if(!error){
+            var bodyObj = JSON.parse(body);
+            console.log('popTag body:', bodyObj);
+            // TODO : 레디스에서 인기태그 목록을 받아와서 response
+
+            var hotList = bodyObj.data;
+
+            res.append("Access-Control-Allow-Origin", "*")
+                .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
+                .set()
+                .json(hotList);
         }
+
     });
-
-
-    // TODO : 레디스에서 인기태그 목록을 받아와서 response
-
-    var hotList = [{
-        name: '테스트',
-        value: 12
-    },{
-        name: '바보바보',
-        value: 24
-    },{
-        name: '메롱메롱',
-        value: 45
-    },{
-        name: '하이루',
-        value: 22
-    },{
-        name: '켁케케',
-        value: 50
-    },{
-        name: '헐',
-        value: 30
-    },{
-        name: '하이루',
-        value: 16
-    },{
-        name: '메롱옹옹',
-        value: 20
-    },{
-        name: '하이룽룽룽',
-        value: 20
-    }];
-
-    res.append("Access-Control-Allow-Origin", "*")
-        .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
-        .set()
-        .json(hotList);
 });
 
 /*

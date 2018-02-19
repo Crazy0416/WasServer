@@ -20,6 +20,7 @@
         if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
             // TODO : 무한스크롤 이벤트
             var CardCnt = getCookie('CardCnt');
+            console.log('CardCnt ', CardCnt);
             getMyPostRange(parseInt(CardCnt));
         }
     });
@@ -46,7 +47,14 @@
     </div>
     <script>
         function writePost(){
-            window.open('/users/userProfile/<%=uid%>/editCard', null, "width = 600, height = 600, location=no, resizable=no")
+            var childWindow = window.open('/users/userProfile/<%=uid%>/editCard', null, "width = 600, height = 600, location=no, resizable=no");
+            var isChildClose = setInterval(function() {
+                if(childWindow == null || childWindow.closed){
+                    $('.postItem').remove();
+                    getMyPostRange(0);
+                    window.clearInterval(isChildClose);
+                }
+            }, 500)
         }
     </script>
     <div class="userPostBox" id="userPostBox">
