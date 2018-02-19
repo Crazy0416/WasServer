@@ -28,36 +28,34 @@ router.get('/', function(req, res, next){
 router.get('/hotlist', function(req, res, next){
 
     // TODO : 레디스에서 인기태그 목록을 받아와서 response
-    var List = Tag.popListTag();
-    console.log('List :', List);
 
     var hotList = [{
-        name: List[0].tag_name,
-        value: List[0].count
+        name: '테스트',
+        value: 12
     },{
-        name: List[1].tag_name,
-        value: List[1].count
+        name: '바보바보',
+        value: 24
     },{
-        name: List[2].tag_name,
-        value: List[2].count
+        name: '메롱메롱',
+        value: 45
     },{
-        name: List[3].tag_name,
-        value: List[3].count
+        name: '하이루',
+        value: 22
     },{
-        name: List[4].tag_name,
-        value: List[4].count
+        name: '켁케케',
+        value: 50
     },{
-        name: List[5].tag_name,
-        value: List[5].count
+        name: '헐',
+        value: 30
     },{
-        name: List[6].tag_name,
-        value: List[6].count
+        name: '하이루',
+        value: 16
     },{
-        name: List[7].tag_name,
-        value: List[7].count
+        name: '메롱옹옹',
+        value: 20
     },{
-        name: List[8].tag_name,
-        value: List[8].count
+        name: '하이룽룽룽',
+        value: 20
     }];
 
     res.append("Access-Control-Allow-Origin", "*")
