@@ -61,7 +61,6 @@ module.exports.getUserByUid = function(uid, callback){
 };
 
 
-
 module.exports.getUserById = function(id, callback){
     User.findById(id, callback);    // mongoose id 있나봄 기본으로
 };
