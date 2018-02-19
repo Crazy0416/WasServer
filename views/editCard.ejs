@@ -13,7 +13,7 @@
         $('#btn').click(function() {
             var formData = new FormData();
             formData.append("title", $("input[name=title]").val());
-            formData.append("content", $("textarea[name=content]").text());
+            formData.append("content", $("textarea[name=content]").val());
             formData.append("tag", $("input[name=tag]").val());
             formData.append("photo", $("input[name=photo]")[0].files[0]);
             formData.append("card_id", 0);
