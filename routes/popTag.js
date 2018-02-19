@@ -28,36 +28,37 @@ router.get('/', function(req, res, next){
 router.get('/hotlist', function(req, res, next){
 
     // TODO : 레디스에서 인기태그 목록을 받아와서 response
+    var List = Tag.popListTag();
+    console.log('List :', List);
 
     var hotList = [{
-        name: 'Thanks for watch me',
-        value: 29
+        name: List[0].tag_name,
+        value: List[0].count
     },{
-        name: 'Hello, there!',
-        value: 23
+        name: List[1].tag_name,
+        value: List[1].count
     },{
-        name: '한글 입력 테스트',
-        value: 44
+        name: List[2].tag_name,
+        value: List[2].count
     },{
-        name: '워드클라우드',
-        value: 54
+        name: List[3].tag_name,
+        value: List[3].count
     },{
-        name: '테스트 문자열',
-        value: 60
+        name: List[4].tag_name,
+        value: List[4].count
     },{
-        name: '태그 문자',
-        value: 36
+        name: List[5].tag_name,
+        value: List[5].count
     },{
-        name: '채팅방',
-        value: 20
+        name: List[6].tag_name,
+        value: List[6].count
     },{
-        name: '한글 입력 가능',
-        value: 20
+        name: List[7].tag_name,
+        value: List[7].count
     },{
-        name: 'English Okay',
-        value: 12
+        name: List[8].tag_name,
+        value: List[8].count
     }];
-
 
     res.append("Access-Control-Allow-Origin", "*")
         .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
