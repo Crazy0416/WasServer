@@ -56,6 +56,14 @@ router.get('/auto', function(req,res){
         client.ZRANGEBYLEX(query, function (err, result) {
             if (err) {
                 console.log('err');
+                sentry.message(
+                    "Redis get autoComplete error",  //message : 예외
+                    "GET /index/auto",             //logger : 어떤 클라이언트에서 예외가 나왔는지
+                    {
+                        note: "input word:"+word,     //extra : 오류 판별을 위한 다른 정보
+                        type: "Redis error"
+                    }
+                );
                 res.append("Access-Control-Allow-Origin", "*")
                     .append("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept")
                     .append("Access-Control-Allow-Credentials", true)

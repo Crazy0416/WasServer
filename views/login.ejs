@@ -59,6 +59,9 @@
 
                                     'type' : 'GET',
                                     'url' : '/auth/facebook',
+                                    'headers': {
+                                        'Content-Type':'application/x-www-from-urlencoded'
+                                    },
                                     'success' : function(json){
                                         if(json['success'] === true){
                                             alert('로그인 완료!!');
@@ -78,6 +81,9 @@
 
                                     'type' : 'GET',
                                     'url' : '/auth/google',
+                                    'headers': {
+                                        'Content-Type':'application/x-www-from-urlencoded'
+                                    },
                                     'success' : function(json){
                                         if(json['success'] === true){
                                             alert('로그인 완료!!');
