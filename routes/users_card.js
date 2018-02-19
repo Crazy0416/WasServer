@@ -19,6 +19,7 @@ var mult_storage = multer.diskStorage({
     }
 });
 var sentry = require('../common/sentry');
+var logging = require('../common/log');
 
 // middleware function
 var tokenAuth = require('../middlewares/tokenAuth');
@@ -285,8 +286,8 @@ router.post('/', tokenAuth, upload.single('photo'), function(req,res){
                     });
             }
         });
+        logging.info('WHAT new Card Tags :' + newCard.tag);
         console.log('new card save success');
-
     }else if(check != 0){ //modify
 
         Post.modifyCard(newCard,check,function(err,card){
