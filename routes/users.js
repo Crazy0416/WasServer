@@ -11,8 +11,8 @@ var redisClient = redis.createClient({
     host: config.redis['host'],
     port: config.redis['port']
 });        // url 설정해서 db 공간을 바꿀 수 있음
-
 var Post = require('../models/post');    //post schema 얻어오기 위함
+var sentry = require('../sentry');
 
 router.use(function(req, res, next){
 
@@ -45,6 +45,14 @@ router.get('/logout', function (req, res, next) {
     redisClient.del("sess:"+ req.cookies.token,function(err, val){
 
         if(err || val==0){
+            sentry.message(
+                "session logout error",
+                "GET /users/logout",
+                {
+                    note: "session:"+req.cookies.token,
+                    type: "Redis error"
+                }
+            );
             res.json({
                 success: false,
                 message: "로그아웃 오류!"
@@ -55,9 +63,7 @@ router.get('/logout', function (req, res, next) {
                 message: "로그아웃 완료!!"
             })
         }
-
     });
-
 });
 
 /* GET popTag page.
@@ -71,7 +77,6 @@ router.get('/userProfile/:uid', uidParamAuth, function(req, res, next){
     res.renderData['email'] = req.session.email;          // TODO: AuthServer 업데이트 되면 처리
 
     //TODO: 유저가 작성한 포스트를 vue로 처리
-
     res.render('userProfile', res.renderData);
 
 });
@@ -82,7 +87,6 @@ router.get('/userProfile/:uid/editCard', tokenAuth, function(req, res, next){
     // TODO: 몽고 디비에서 데이터 추출해야함
 
     res.renderData['title'] = "포스트 작성 페이지";
-
     res.render('editCard', res.renderData);
 
 });

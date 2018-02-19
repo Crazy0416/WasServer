@@ -7,6 +7,7 @@ var redisClient = redis.createClient({
     port: config.redis['port']
 });
 var addSessionObj = require('../middlewares/addSessionObj');
+var sentry = require('../sentry');
 
 router.use(function(req, res, next){
     res.renderData = {};          // render 할 때 보낼 객체

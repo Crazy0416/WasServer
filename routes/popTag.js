@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var addSessionObj = require('../middlewares/addSessionObj');
 var Tag = require('../models/tag');  //tag schema
+var sentry = require('../sentry');
 
 router.use(function(req, res, next){
 
@@ -72,6 +73,13 @@ router.get('/todayList', function(req,res){
 
     Tag.popListTag(function(err,result){
         if(err){
+            sentry.message(
+                "DB popListTag error",
+                "GET popTag/todayList",
+                {
+                    type: "DB error"
+                }
+            );
             console.log('err');
         }else{
             console.log('pop list result :',result);
