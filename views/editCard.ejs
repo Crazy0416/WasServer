@@ -5,12 +5,40 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/writeCard.css" />
     <script src="/javascripts/submitUrlHandler.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body>
+<script>
+    $(function() {
+        $('#btn').click(function() {
+            var formData = new FormData();
+            formData.append("title", $("input[name=title]").val());
+            formData.append("content", $("textarea[name=content]").text());
+            formData.append("tag", $("input[name=tag]").val());
+            formData.append("photo", $("input[name=photo]")[0].files[0]);
+            formData.append("card_id", 0);
+
+            $.ajax({
+                url: '/users/card',
+                data: formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function(data){
+                    if(data.success === true)
+                        alert('포스팅 완료')
+                    else
+                        alert('포스팅 실패')
+                    window.close();
+                }
+            });
+
+        })
+    })
+</script>
 
 <div class="container">
-    <form onsubmit="editCardPost()" class="writePost" id="frm_editPost" enctype="multipart/form-data">
+    <form class="writePost" id="frm_editPost" action="/users/card" method="post" enctype="multipart/form-data">
         <input type="text" name="user_ObjectId" style="display: none" />
         <input type="text" name="card_id" value="0" style="display: none"/>
         <div class="titleBox inputBox">
@@ -27,15 +55,8 @@
             <input type="file" name="photo" value="File Upload">
         </div>
         <div class="commitBox inputBox">
-            <input type="submit" value="Posting!" class="submit_btn">
+            <input type="button" id="btn" value="Posting!" class="submit_btn">
         </div>
-        <script type="text/javascript">
-            function editCardPost(){
-                submitUrlHandler("frm_editPost", "post", "/users/card", null);
-                window.close();
-            }
-        </script>
-
     </form>
 </div>
 
