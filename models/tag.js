@@ -8,13 +8,10 @@ var connection = mongoose.createConnection('mongodb://' + config.mongodb['host']
         console.log('mongodb connection ok');
     }
 });
-//var upsert = require('mongoose-upsert');
 
 var TagSchema = new Schema({
     tag_name: {type: String, required: true },
-
     count:{type: Number},
-
     createdAt: {type: Date, default: Date.now, required:true}
 });
 
