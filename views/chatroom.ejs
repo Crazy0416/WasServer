@@ -56,8 +56,23 @@
 <div class="container">
 
     <div class="postContainer" id="cardView">
-
+        <div class="anc_Posting">
+            <button onclick="writePost()" class="btn_posting">
+                포스팅하기
+            </button>
+        </div>
     </div>
+    <script>
+        <%if (typeof uid != 'undefined') {%>
+        function writePost(){
+            window.open('/users/userProfile/<%=uid%>/editCard', null, "width = 600, height = 600, location=no, resizable=no")
+        }
+        <%} else { %>
+        function writePost(){
+            alert('로그인이 필요한 작업입니다.');
+        }
+        <%}%>
+    </script>
     <div class="chatContainer">
         <div class="chatView" id="chatView" style="overflow: auto;">
         </div>

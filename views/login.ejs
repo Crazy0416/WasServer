@@ -36,7 +36,9 @@
                                     password: $("#password").val()
                                 };
                                 $.ajax({
-
+                                    'xhrFields': {
+                                        withCredentials: true
+                                    },
                                     'type' : 'POST',
                                     'url' : '/auth/local',
                                     'data' : _data,
@@ -55,13 +57,13 @@
                         )
                         $('#facebkBtn').click(
                             function (){
+                                console.log("facebook click");
                                 $.ajax({
-
+                                    'xhrFields': {
+                                        withCredentials: true
+                                    },
                                     'type' : 'GET',
                                     'url' : '/auth/facebook',
-                                    'headers': {
-                                        'Content-Type':'application/x-www-from-urlencoded'
-                                    },
                                     'success' : function(json){
                                         if(json['success'] === true){
                                             alert('로그인 완료!!');
@@ -77,14 +79,14 @@
                         )
                         $('#googleBtn').click(
                             function (){
+                                console.log("google click");
                                 $.ajax({
-
+                                    'xhrFields': {
+                                        withCredentials: true
+                                    },
                                     'type' : 'GET',
                                     'url' : '/auth/google',
-                                    'headers': {
-                                        'Content-Type':'application/x-www-from-urlencoded'
-                                    },
-                                    'success' : function(json){
+                                    'succsess' : function(json){
                                         if(json['success'] === true){
                                             alert('로그인 완료!!');
                                             document.cookie = 'token='+json['data']['token'] + ';path=/';
