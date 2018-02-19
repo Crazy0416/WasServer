@@ -65,8 +65,9 @@
                                     'type' : 'GET',
                                     'url' : '/auth/facebook',
                                     'headers': {
-                                        'Content-Type':'application/x-www-from-urlencoded',
-                                        'Access-Control-Allow-Origin':'*'
+                                        //'Content-Type':'application/x-www-from-urlencoded',
+                                        'Access-Control-Allow-Origin':'*',
+                                        'Access-Control-Allow-Methods':'GET'
                                     },
                                     'success' : function(json){
                                         if(json['success'] === true){
@@ -91,8 +92,9 @@
                                     'type' : 'GET',
                                     'url' : '/auth/google',
                                     'headers': {
-                                        'Content-Type':'application/x-www-from-urlencoded',
-                                        'Access-Control-Allow-Origin':'*'
+                                        //'Content-Type':'application/x-www-from-urlencoded',
+                                        'Access-Control-Allow-Origin':'*',
+                                        'Access-Control-Allow-Methods':'GET'
                                     },
                                     'success' : function(json){
                                         if(json['success'] === true){
