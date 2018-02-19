@@ -4,6 +4,8 @@
     <title><%= title %></title>
     <link rel="stylesheet" href="/stylesheets/basic.css" />
     <link rel="stylesheet" href="/stylesheets/tagList.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
 </head>
 <body>
@@ -85,66 +87,13 @@
             <div class="tagTitle">
                 <h2>오늘의 인기 태그</h2> <!-- 채팅 서버에서 끊어질 때마다 count -1 해야함 -->
             </div>
-            <div class="tagListBox">
+            <div class="tagListBox" id="todayList">
                 <ol class="tagList">
-                    <li class="list">
-                        <a href="#" class="tagRank">
-                            <em class="num">1</em>
-                            <span class="title">test</span>
-                        </a>
-                    </li>
-                    <li class="list">
-                        <a href="#" class="tagRank">
-                            <em class="num">2</em>
-                            <span class="title">test</span>
-                        </a>
-                    </li>
-                    <li class="list">
-                        <a href="#" class="tagRank">
-                            <em class="num">3</em>
-                            <span class="title">test</span>
-                        </a>
-                    </li>
-                    <li class="list">
-                        <a href="#" class="tagRank">
-                            <em class="num">4</em>
-                            <span class="title">test</span>
-                        </a>
-                    </li>
-                    <li class="list">
-                        <a href="#" class="tagRank">
-                            <em class="num">5</em>
-                            <span class="title">test</span>
-                        </a>
-                    </li>
-                    <li class="list">
-                        <a href="#" class="tagRank">
-                            <em class="num">6</em>
-                            <span class="title">test</span>
-                        </a>
-                    </li>
-                    <li class="list">
-                        <a href="#" class="tagRank">
-                            <em class="num">7</em>
-                            <span class="title">test</span>
-                        </a>
-                    </li>
-                    <li class="list">
-                        <a href="#" class="tagRank">
-                            <em class="num">8</em>
-                            <span class="title">test</span>
-                        </a>
-                    </li>
-                    <li class="list">
-                        <a href="#" class="tagRank">
-                            <em class="num">9</em>
-                            <span class="title">test</span>
-                        </a>
-                    </li>
-                    <li class="list">
-                        <a href="#" class="tagRank">
-                            <em class="num">10</em>
-                            <span class="title">test</span>
+                    <li v-for="(item, index) in items" class="list">
+                        <a v-bind:href="'/chatrooms/tag/'+(item.tag_name).split('#')[1]" class="tagRank">
+                            <em class="num">{{index}}</em>
+                            <span class="title">{{item.tag_name}}</span>
+                            <span class="count">{{item.count}}</span>
                         </a>
                     </li>
                 </ol>
@@ -153,20 +102,26 @@
         </div>
     </div>
     <script type="text/javascript">
-        function getTodayList() {
-            $.ajax({
-                'type' : 'GET',
-                'url' : '/popTag/todayList',
-                'success' : function(json){
-                    if(json['success'] === true){
-                        var dataList = json['data'];
+        var todayListVue = new Vue({
+            el: '#todayList',
+            data: {
+                items: []
+            },
+            created: function() {
+                this.fetchData();
+            },
+            methods: {
+                fetchData: function() {
+                    var self = this;
+                    axios.get('/popTag/todayList')
+                    .then(function(data) {
+                        var dataList = data.data.data;
                         // 데이터 어떻게 바꿀건지 생각하셈
-                    }else{
-                        alert('get data fail');
-                    }
+                        self.items = dataList;
+                    })
                 }
-            })
-        }
+            }
+        })
     </script>
 </body>
 </html>
