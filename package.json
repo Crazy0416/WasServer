@@ -10,6 +10,7 @@
     "body-parser": "~1.18.2",
     "connect-redis": "^3.3.3",
     "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
     "debug": "~2.6.9",
     "echarts": "^4.0.2",
     "echarts-wordcloud": "^1.1.3",
