@@ -152,6 +152,21 @@
             </p>
         </div>
     </div>
-
+    <script type="text/javascript">
+        function getTodayList() {
+            $.ajax({
+                'type' : 'GET',
+                'url' : '/popTag/todayList',
+                'success' : function(json){
+                    if(json['success'] === true){
+                        var dataList = json['data'];
+                        // 데이터 어떻게 바꿀건지 생각하셈
+                    }else{
+                        alert('get data fail');
+                    }
+                }
+            })
+        }
+    </script>
 </body>
 </html>

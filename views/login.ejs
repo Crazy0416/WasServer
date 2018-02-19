@@ -53,6 +53,44 @@
                                 });
                             }
                         )
+                        $('#facebkBtn').click(
+                            function (){
+                                $.ajax({
+
+                                    'type' : 'GET',
+                                    'url' : '/auth/facebook',
+                                    'success' : function(json){
+                                        if(json['success'] === true){
+                                            alert('로그인 완료!!');
+                                            document.cookie = 'token='+json['data']['token'] + ';path=/';
+                                            location.replace('/');
+                                        }else{
+                                            alert('로그인 실패');
+                                        }
+                                    }
+
+                                });
+                            }
+                        )
+                        $('#googleBtn').click(
+                            function (){
+                                $.ajax({
+
+                                    'type' : 'GET',
+                                    'url' : '/auth/google',
+                                    'success' : function(json){
+                                        if(json['success'] === true){
+                                            alert('로그인 완료!!');
+                                            document.cookie = 'token='+json['data']['token'] + ';path=/';
+                                            location.replace('/');
+                                        }else{
+                                            alert('로그인 실패');
+                                        }
+                                    }
+
+                                });
+                            }
+                        )
                     })
                 </script>
             </form>
@@ -60,11 +98,11 @@
            <!-- <a href="/users/register"><button id="registerButton" onclick="registerButtonHandler()">Register</button></a>
            <a href="#"><input type="button" value="Facebook" id="loginFacebookButton"></a>-->
 
-            <button class="loginBtn loginBtn--facebook">
+            <button class="loginBtn loginBtn--facebook" id="facebkBtn">
                 Login with Facebook
             </button>
 
-            <button class="loginBtn loginBtn--google">
+            <button class="loginBtn loginBtn--google" id="googleBtn">
                 Login with Google
             </button>
 
