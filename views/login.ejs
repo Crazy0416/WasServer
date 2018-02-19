@@ -64,6 +64,10 @@
                                     },
                                     'type' : 'GET',
                                     'url' : '/auth/facebook',
+                                    'headers': {
+                                        'Content-Type':'application/x-www-from-urlencoded',
+                                        'Access-Control-Allow-Origin':'http://192.168.0.15'
+                                    },
                                     'success' : function(json){
                                         if(json['success'] === true){
                                             alert('로그인 완료!!');
@@ -86,7 +90,11 @@
                                     },
                                     'type' : 'GET',
                                     'url' : '/auth/google',
-                                    'succsess' : function(json){
+                                    'headers': {
+                                        'Content-Type':'application/x-www-from-urlencoded',
+                                        'Access-Control-Allow-Origin':'http://192.168.0.15'
+                                    },
+                                    'success' : function(json){
                                         if(json['success'] === true){
                                             alert('로그인 완료!!');
                                             document.cookie = 'token='+json['data']['token'] + ';path=/';

@@ -3,6 +3,7 @@ var router = express.Router();
 var addSessionObj = require('../middlewares/addSessionObj');
 var Tag = require('../models/tag');  //tag schema
 var sentry = require('../common/sentry');
+var request = require('request');
 
 router.use(function(req, res, next){
 
@@ -26,6 +27,18 @@ router.get('/', function(req, res, next){
 * GET hotList array
  */
 router.get('/hotlist', function(req, res, next){
+
+    var options = {
+        url: 'http://192.168.0.15/chatserver/popularChat',
+        method: 'GET',
+    }
+
+    request(options, function(error, response, body){
+        if(!error && response.statusCode == 200){
+            console.log('popTag body:',body);
+        }
+    });
+
 
     // TODO : 레디스에서 인기태그 목록을 받아와서 response
 
