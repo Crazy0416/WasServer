@@ -18,7 +18,7 @@ var mult_storage = multer.diskStorage({
         cb(null, req.session.uid  + '-' + Date.now() + '-' + file.originalname);
     }
 });
-var sentry = require('../sentry');
+var sentry = require('../common/sentry');
 
 // middleware function
 var tokenAuth = require('../middlewares/tokenAuth');

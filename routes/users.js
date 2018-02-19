@@ -12,7 +12,7 @@ var redisClient = redis.createClient({
     port: config.redis['port']
 });        // url 설정해서 db 공간을 바꿀 수 있음
 var Post = require('../models/post');    //post schema 얻어오기 위함
-var sentry = require('../sentry');
+var sentry = require('../common/sentry');
 
 router.use(function(req, res, next){
 
