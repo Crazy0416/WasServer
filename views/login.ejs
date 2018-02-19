@@ -64,10 +64,10 @@
                                     },
                                     'type' : 'GET',
                                     'url' : '/auth/facebook',
-                                    'headers': {
-                                        'Content-Type':'application/x-www-from-urlencoded',
-                                        'Access-Control-Allow-Origin':'http://192.168.0.15'
-                                    },
+                                    // 'headers': {
+                                    //     'Content-Type':'application/x-www-from-urlencoded',
+                                    //     'Access-Control-Allow-Origin':'http://192.168.0.15'
+                                    // },
                                     'success' : function(json){
                                         if(json['success'] === true){
                                             alert('로그인 완료!!');
@@ -90,10 +90,10 @@
                                     },
                                     'type' : 'GET',
                                     'url' : '/auth/google',
-                                    'headers': {
-                                        'Content-Type':'application/x-www-from-urlencoded',
-                                        'Access-Control-Allow-Origin':'http://192.168.0.15'
-                                    },
+                                    // 'headers': {
+                                    //     'Content-Type':'application/x-www-from-urlencoded',
+                                    //     'Access-Control-Allow-Origin':'http://192.168.0.15'
+                                    // },
                                     'success' : function(json){
                                         if(json['success'] === true){
                                             alert('로그인 완료!!');
