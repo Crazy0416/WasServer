@@ -73,7 +73,7 @@
                   .then(function(response) {
                       // JSON responses are automatically parsed.
                       this.posts = response.data
-                      console.log('hotlist Data: ',response);
+                      console.log('hotlist Data: ',response.data);
                       wordcloud('wordcloudBox',response.data);
                   }.bind(this))
                   .catch(function(e) {

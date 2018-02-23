@@ -3,26 +3,38 @@
 <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/card.css' />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
 </head>
 <body>
     <div class="container">
-        <div class="postTitle">
-            <%= title%>
-        </div>
-        <div class="postImage">
-            <img src="<%=postImageUrl%>" alt="">
-        </div>
-        <div class="postContent">
-            <%= postContent%>
-        </div>
-        <div class="postTag" >
-            <% for(var i = 0; i < postTag.length; i++) { %>
-            <a href="/chatrooms/tag/<%=postTag[i].substr(1)%>"><%=postTag[i]%></a>
-            <% } %>
+        <div class="postItem">
+            <div class="postImage">
+                <img src="<%=postImageUrl%>" alt="">
+            </div>
+            <div class="postText">
+                <div class="postTitle">
+                    <%= title%>
+                </div>
+                <div class="postContent">
+                    <%= postContent%>
+                </div>
+                <div class="postTag" >
+                    <% for(var i = 0; i < postTag.length; i++) { %>
+                    <a href="javascript:hrefFunc('<%=postTag[i].substr(1)%>');"><%=postTag[i]%></a>
+                    <% } %>
+                </div>
+            </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function hrefFunc(tagName) {
+            var parentWindow = window.opener;
+            parentWindow.location.href = "/chatrooms/tag/"+tagName;
+            window.close();
+        }
+    </script>
 </body>
 </html>

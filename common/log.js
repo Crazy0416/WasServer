@@ -1,7 +1,8 @@
 var winston = require('winston');
 const tsFormat = () => (new Date()).toLocaleTimeString();
 const fs = require('fs');
-const logDir = 'log';
+const path = require('path');
+const logDir = path.join(__dirname, '../');
 
 if(!fs.existsSync(logDir)){
     fs.mkdirSync(logDir);
