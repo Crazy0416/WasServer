@@ -29,7 +29,7 @@ router.get('/', function(req, res, next){
 router.get('/hotlist', function(req, res, next){
 
     var options = {
-        url: 'http://192.168.0.15/chatserver/popularChat',
+        url: '/chatserver/popularChat',
         method: 'GET',
     }
 
