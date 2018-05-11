@@ -15,7 +15,7 @@
 [유튜브 영상](https://www.youtube.com/watch?v=eHSZN2g1drE)
 
 # 프로젝트 구조
-![태그톡 구조](https://github.com/seungjoopet/AuthApiServer/blob/master/%EC%84%9C%EB%B9%84%EC%8A%A4%20%EA%B5%AC%EC%84%B1.png)
+![태그톡 구조](https://raw.githubusercontent.com/Crazy0416/WasServer/master/docs/TagTalkArchitecture.png)
 
 # 프로젝트 설치
 ## 소스코드 복제 및 config 폴더 생성
