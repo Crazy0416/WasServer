@@ -14,10 +14,32 @@
 # 프로젝트 시연영상
 [유튜브 영상](https://www.youtube.com/watch?v=eHSZN2g1drE)
 
-# 프로젝트 구조
+
+
+## 개발 목표
+
+**무중단 서버** 개발, **대용량 처리**, **스케일 아웃**에 중점을 맞추어 개발
+
+=> 완벽하지는 않음
+
+
+
+# 프로젝트 아키텍처
+
+### 1. 전체 시스템 아키텍처
+
 ![태그톡 구조](https://raw.githubusercontent.com/Crazy0416/WasServer/master/docs/TagTalkArchitecture.png)
 
+
+
+### 2. 로드 밸런싱(HAproxy)
+
+![로드 밸런싱 구조](https://github.com/Crazy0416/WasServer/blob/master/resource/load%20balancing.jpg?raw=true)
+
+
+
 # 프로젝트 설치
+
 ## 소스코드 복제 및 config 폴더 생성
 ```
 git clone https://github.com/Crazy0416/WasServer
