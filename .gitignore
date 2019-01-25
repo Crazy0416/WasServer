@@ -3,3 +3,4 @@ config/
 .idea/
 public/images/uploads/
 *.log
+package-lock.json
